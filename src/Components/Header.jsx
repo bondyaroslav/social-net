@@ -1,9 +1,10 @@
 import React from 'react';
+import styles from './Header.module.css';
 
 const Header = () => {
     return (
-        <div className={"Header"}>
-            <div className="logo">Company Name</div>
+        <div className={styles.Header}>
+            <div className={styles.logo}>Company Name</div>
         </div>
     );
 };

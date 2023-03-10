@@ -1,0 +1,13 @@
+.Sidebar {
+    width: 20%;
+    background-color: #313131;
+    color: whitesmoke;
+}
+.nav {
+    background-color: #313131;
+    list-style: none;
+}
+.item a {
+    color: whitesmoke;
+    text-decoration: none;
+}
