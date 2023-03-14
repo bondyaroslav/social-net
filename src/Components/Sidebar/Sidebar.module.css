@@ -7,14 +7,12 @@
 .nav {
     background-color: #313131;
     list-style: none;
+    padding: 20px;
 }
 .item a {
     color: whitesmoke;
     text-decoration: none;
 }
-
-.wrapper {
-    /*display: flex;*/
-    /*flex-direction: row;*/
-    /*justify-content: space-between;*/
+.item a:active {
+    color: gold;
 }
