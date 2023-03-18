@@ -1,13 +1,13 @@
 import './App.css'
 import Header from "./Components/Header/Header";
 import Main from "./Main";
-import Dialogs from "./Components/Dialogs/Dialogs";
 
-function App() {
+function App(props) {
+
     return (
         <div className="App">
             <Header/>
-            <Main/>
+            <Main posts={props.posts} dialogs={props.dialogs} messages={props.messages}/>
         </div>
     );
 }

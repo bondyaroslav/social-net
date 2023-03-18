@@ -8,14 +8,17 @@ import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import {Route, Routes} from "react-router-dom";
 
-const Main = () => {
+const Main = (props) => {
+
+
+
     return (
         <div className={styles.Main}>
             <Sidebar/>
 
             <Routes>
-                <Route path="/profile" element={<Profile />}/>
-                <Route path="/dialogs*" element={<Dialogs />}/>
+                <Route path="/profile" element={ <Profile posts={props.posts} />}/>
+                <Route path="/dialogs*" element={ <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
                 <Route path="/news" element={<News />}/>
                 <Route path="/music" element={<Music />}/>
                 <Route path="/settings" element={<Settings />}/>
