@@ -2,11 +2,13 @@ import React from "react";
 import styles from "./Dialogs.module.css"
 import DialogItem from "./DialogItem";
 import Message from "./Message";
+import TextArea from "./TextArea";
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.dialogs.map( dialog => <DialogItem name={dialog.name} id={dialog.id}/> )
-    let messagesElements = props.messages.map( message => <Message message={message.message} id={message.id}/> )
+
+    let dialogsElements = props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>)
+    let messagesElements = props.messages.map(message => <Message message={message.message} id={message.id}/>)
 
     return (
         <div className={styles.Dialogs}>
@@ -21,6 +23,8 @@ const Dialogs = (props) => {
                 <div className={styles.messages}>
                     {messagesElements}
                 </div>
+
+                <TextArea/>
             </div>
         </div>
     )
