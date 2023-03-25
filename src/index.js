@@ -5,11 +5,11 @@ import {BrowserRouter} from "react-router-dom";
 import state from "./redux/state";
 import {addPost} from "./redux/state";
 
+//addPost('new post')
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
         <BrowserRouter>
-            <App posts={state.posts} dialogs={state.dialogs} messages={state.messages}/>
+            <App state={state} addPost={addPost} posts={state.profilePage.posts} dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages}/>
         </BrowserRouter>
-    </React.StrictMode>
 );
