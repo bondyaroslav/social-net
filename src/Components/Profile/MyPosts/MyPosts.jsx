@@ -1,6 +1,7 @@
 import React from 'react';
-import style from "./MyPosts.module.css"
+import styles from "./MyPosts.module.css"
 import Post from "./Posts/Post";
+import {rerenderEntireTree} from "../../../render";
 
 const MyPosts = (props) => {
 
@@ -12,16 +13,17 @@ const MyPosts = (props) => {
         debugger
         let text = newPostElement.current.value
         props.addPost(text)
+        rerenderEntireTree()
     }
 
     return (
-        <div>
+        <div className={styles.MyPosts}>
             <h3>My posts</h3>
-            <div>
+            <div className={styles.addPost}>
                 <textarea ref={newPostElement}></textarea>
                 <button onClick={addPost}>Add post</button>
             </div>
-            <div className={style.posts}>
+            <div className={styles.posts}>
                 {postElements}
             </div>
         </div>

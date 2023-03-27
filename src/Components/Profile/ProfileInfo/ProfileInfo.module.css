@@ -1,3 +1,18 @@
 .ProfileInfo {
 
 }
+.background_photo {
+    width: 100%;
+    height: 150px;
+    background-color: gold;
+}
+.avatar {
+    margin: 20px 0 0 20px;
+    width: 80px;
+    height: 80px;
+    background-color: gold;
+    border-radius: 50%;
+}
+.description {
+    margin: 20px 0 0 20px;
+}
