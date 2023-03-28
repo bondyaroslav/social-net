@@ -4,12 +4,16 @@ import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import state from "./redux/state";
 import {addPost} from "./redux/state";
+import {updateNewPostText} from "./redux/state";
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 export let rerenderEntireTree = () => {
-    const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(
         <BrowserRouter>
-            <App state={state} addPost={addPost} posts={state.profilePage.posts} dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages}/>
+            <App state={state}
+                 addPost={addPost}
+                 updateNewPostText={updateNewPostText}
+            />
         </BrowserRouter>
     );
 }

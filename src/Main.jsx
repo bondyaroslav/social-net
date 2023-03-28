@@ -10,9 +10,7 @@ import {Route, Routes} from "react-router-dom";
 import {addPost} from "./redux/state";
 
 const Main = (props) => {
-
-
-
+    console.log(props)
     return (
         <div className={styles.Main}>
             <Sidebar/>
