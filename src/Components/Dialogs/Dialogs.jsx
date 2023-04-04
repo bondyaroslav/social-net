@@ -7,7 +7,7 @@ import TextArea from "./TextArea";
 const Dialogs = (props) => {
 
 
-    let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>)
+    let dialogsElements = props.store._state.dialogsPage.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>)
     let messagesElements = props.dialogsPage.messages.map(message => <Message message={message.message} id={message.id}/>)
 
     return (
