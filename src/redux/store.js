@@ -1,3 +1,6 @@
+const ADD_POST = "ADD-POST"
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
+
 let store = {
 
     rerenderEntireTree() {
@@ -27,34 +30,37 @@ let store = {
         sidebar: {}
     },
 
-    getState() {
-        debugger;
-        return this._state
-    },
-
     _callSubscriber() {
         console.log("State changed")
     },
 
-    addPost(postMessage) {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likes: 0
-        }
-        store._state.profilePage.posts.push(newPost)
-        store._state.profilePage.newPostText = ' '
-        store._callSubscriber(store._state)
+    getState() {
+        return this._state
     },
-
-    updateNewPostText (newText) {
-        this.store._state.profilePage.newPostText = newText
-        this.store.rerenderEntireTree(store._state)
-    },
-
     subscribe (observer) {
         this._callSubscriber = observer
     },
+    
+    dispatch(action) {
+        if (action.type === ADD_POST) {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likes: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(this._state)
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            store._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this._state)
+        }
+    }
+
 }
+
+export const addPostActionCreator = () => ( { type: ADD_POST } )
+export const updateNewPostTextActionCreator = (text) => ( {type: UPDATE_NEW_POST_TEXT, newText: text} )
+
 
 export default store
