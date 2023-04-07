@@ -2,13 +2,24 @@ import React from "react";
 import styles from "./Dialogs.module.css"
 import DialogItem from "./DialogItem";
 import Message from "./Message";
-import TextArea from "./TextArea";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/store";
 
 const Dialogs = (props) => {
 
+    let state = props.store.getState().dialogsPage
 
-    let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>)
-    let messagesElements = props.dialogsPage.messages.map(message => <Message message={message.message} id={message.id}/>)
+    let dialogsElements = state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>)
+    let messagesElements = state.messages.map(message => <Message message={message.message} id={message.id}/>)
+    let newMessageBody = state.newMessageBody
+
+    let onSendMessageClick = () => {
+        props.store.dispatch(sendMessageCreator())
+    }
+
+    let onNewMessageChange = (event) => {
+        let body = event.target.value
+        props.store.dispatch(updateNewMessageBodyCreator(body))
+    }
 
     return (
         <div className={styles.Dialogs}>
@@ -21,10 +32,17 @@ const Dialogs = (props) => {
                 </div>
 
                 <div className={styles.messages}>
-                    {messagesElements}
+                    <div>{messagesElements}</div>
+
                 </div>
 
-                <TextArea/>
+                <div className={styles.textarea_wrapper}>
+                    <div><textarea placeholder={"enter"}
+                                   value={newMessageBody}
+                                   onChange={onNewMessageChange}></textarea></div>
+                    <div><button onClick={onSendMessageClick}>send message</button></div>
+                </div>
+
             </div>
         </div>
     )

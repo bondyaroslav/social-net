@@ -1,5 +1,5 @@
 .Dialogs {
-    width: 80%;
+    width: 50%;
     height: 100%;
 }
 .header {
@@ -11,4 +11,8 @@
     width: 80%;
     justify-content: space-between;
     margin: 20px;
+}
+
+.textarea_wrapper {
+
 }
