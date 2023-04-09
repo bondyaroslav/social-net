@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Dialogs.module.css"
 import DialogItem from "./DialogItem";
 import Message from "./Message";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/store";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogsReducer";
 
 const Dialogs = (props) => {
 
@@ -23,7 +23,6 @@ const Dialogs = (props) => {
 
     return (
         <div className={styles.Dialogs}>
-
             <p className={styles.header}>Dialogs</p>
 
             <div className={styles.wrapper}>
