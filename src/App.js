@@ -3,11 +3,11 @@ import Header from "./Components/Header/Header";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import {Route, Routes} from "react-router-dom";
 import Profile from "./Components/Profile/Profile";
-import Dialogs from "./Components/Dialogs/Dialogs";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import React from "react";
+import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 const App = (props) => {
 
@@ -21,7 +21,7 @@ const App = (props) => {
                         <Profile store={props.store}
                                  dispatch={props.dispatch} />}/>
 
-                    <Route path="/dialogs/*" element={ <Dialogs store={props.store} />}/>
+                    <Route path="/dialogs/*" element={ <DialogsContainer store={props.store} />}/>
                     <Route path="/news" element={<News />}/>
                     <Route path="/music" element={<Music />}/>
                     <Route path="/settings" element={<Settings />}/>
