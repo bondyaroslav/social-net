@@ -9,7 +9,7 @@ import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import React from "react";
 
-function App(props) {
+const App = (props) => {
 
     return (
         <div className="App">
@@ -18,7 +18,7 @@ function App(props) {
                 <Sidebar/>
                 <Routes>
                     <Route path="/profile" element={
-                        <Profile profilePage={props.state.profilePage}
+                        <Profile store={props.store}
                                  dispatch={props.dispatch} />}/>
 
                     <Route path="/dialogs/*" element={ <Dialogs store={props.store} />}/>
