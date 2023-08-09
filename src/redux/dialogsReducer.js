@@ -5,25 +5,36 @@ let initialState = {
     dialogs: [
         {id: 1, name: "Name1"},
         {id: 2, name: "Name2"},
-        {id: 3, name: "Name3"}],
+        {id: 3, name: "Name3"},
+        {id: 4, name: "Name4"}],
 
     messages: [
         {id: 1, message: "Hi"},
         {id: 2, message: "How are you"},
-        {id: 3, message: "Bye"}],
+        {id: 3, message: "Bye"},
+        {id: 4, message: "Bye"}],
 
     newMessageBody: ""
 }   
 
 const dialogsReducer = (state = initialState, action) => {
-    if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-        state.newMessageBody = action.body
-    } else if (action.type === SEND_MESSAGE) {
-        let body = state.newMessageBody
-        state.newMessageBody = ' '
-        state.dialogsPage.messages.push({id: 6, message: body})
+    switch (action.type) {
+        case UPDATE_NEW_MESSAGE_BODY: {
+            let stateCopy = {...state}
+            stateCopy.newMessageBody = {...state.newMessageBody}
+            return stateCopy
+        }
+        case SEND_MESSAGE: {
+            let stateCopy = {...state}
+            let body = stateCopy.newMessageBody
+            stateCopy.newMessageBody = ' '
+            stateCopy.dialogsPage.messages = {...state.dialogsPage.messages}
+            stateCopy.dialogsPage.messages.push({id: 6, message: body})
+            return stateCopy
+        }
+        default:
+            return state
     }
-    return state
 }
 
 export const sendMessageCreator = () => ({type: SEND_MESSAGE})

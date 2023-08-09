@@ -4,14 +4,11 @@ import DialogItem from "./DialogItem";
 import Message from "./Message";
 
 const Dialogs = (props) => {
-
-    console.log(props)
-
     let state = props.dialogsPage
+    let newMessageBody = state.newMessageBody
 
     let dialogsElements = state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id}/>)
     let messagesElements = state.messages.map(message => <Message message={message.message} id={message.id} key={message.id}/>)
-    let newMessageBody = state.newMessageBody
 
     let onSendMessageClick = () => {
         props.sendMessage()
@@ -25,17 +22,9 @@ const Dialogs = (props) => {
     return (
         <div className={styles.Dialogs}>
             <p className={styles.header}>Dialogs</p>
-
             <div className={styles.wrapper}>
-                <div className={styles.dialogItems}>
-                    {dialogsElements}
-                </div>
-
-                <div className={styles.messages}>
-                    <div>{messagesElements}</div>
-
-                </div>
-
+                <div>{dialogsElements}</div>
+                <div>{messagesElements}</div>
                 <div className={styles.textarea_wrapper}>
                     <div><textarea placeholder={"enter"}
                                    value={newMessageBody}
