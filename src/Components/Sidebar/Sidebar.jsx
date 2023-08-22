@@ -9,6 +9,7 @@ const Sidebar = () => {
             <nav className={styles.nav}>
                 <div className={styles.item}><Link to="/profile">Profile</Link></div>
                 <div className={styles.item}><Link to="/dialogs">Messages</Link></div>
+                <div className={styles.item}><Link to="/users">Users</Link></div>
                 <div className={styles.item}><Link to="/news">News</Link></div>
                 <div className={styles.item}><Link to="/music">Music</Link></div>
                 <div className={styles.item} itemID={"settings"}><Link to="/settings">Settings</Link></div>

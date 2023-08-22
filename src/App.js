@@ -8,6 +8,7 @@ import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import React from "react";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
+import Users from "./Components/Users/Users";
 
 const App = (props) => {
 
@@ -22,6 +23,7 @@ const App = (props) => {
                                  dispatch={props.dispatch} />}/>
 
                     <Route path="/dialogs/*" element={ <DialogsContainer store={props.store} />}/>
+                    <Route path="/users" element={ <Users /> }/>
                     <Route path="/news" element={<News />}/>
                     <Route path="/music" element={<Music />}/>
                     <Route path="/settings" element={<Settings />}/>
