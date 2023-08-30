@@ -8,9 +8,12 @@ import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import React from "react";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
-import Users from "./Components/Users/Users";
+import UsersContainer from "./Components/Users/UsersContainer";
+import axios from "axios";
 
-const App = (props) => {
+const App = ({store, state, dispatch}) => {
+
+    axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => console.log(response.data))
 
     return (
         <div className="App">
@@ -19,11 +22,11 @@ const App = (props) => {
                 <Sidebar/>
                 <Routes>
                     <Route path="/profile" element={
-                        <Profile store={props.store}
-                                 dispatch={props.dispatch} />}/>
+                        <Profile store={store}
+                                 dispatch={dispatch} />}/>
 
-                    <Route path="/dialogs/*" element={ <DialogsContainer store={props.store} />}/>
-                    <Route path="/users" element={ <Users /> }/>
+                    <Route path="/dialogs/*" element={ <DialogsContainer store={store} />}/>
+                    <Route path="/users" element={ <UsersContainer />}/>
                     <Route path="/news" element={<News />}/>
                     <Route path="/music" element={<Music />}/>
                     <Route path="/settings" element={<Settings />}/>

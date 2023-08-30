@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users
+        users: state.usersPage.users
     }
 }
 
