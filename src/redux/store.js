@@ -1,53 +1,18 @@
+import {combineReducers, createStore} from "redux";
 import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 import sidebarReducer from "./sidebarReducer";
+import usersReducer from "./usersReducer";
 
-let store = {
+let reducers = combineReducers({
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    sidebar: sidebarReducer,
+    usersPage: usersReducer
+})
 
-    _state: {
-        profilePage: {
-            posts: [
-                {id: 1, message: "Hi, how are you?", likes: 11},
-                {id: 2, message: "My first post", likes: 20}],
-            newPostText: " "
-        },
+let store = createStore(reducers)
 
-        dialogsPage: {
-            dialogs: [
-                {id: 1, name: "Name1"},
-                {id: 2, name: "Name2"},
-                {id: 3, name: "Name3"}],
-
-            messages: [
-                {id: 1, message: "Hi"},
-                {id: 2, message: "How are you"},
-                {id: 3, message: "Bye"}],
-
-            newMessageBody: ""
-        },
-
-        sidebar: {}
-    },
-
-    _callSubscriber() {
-        console.log("State changed")
-    },
-
-    getState() {
-        return this._state
-    },
-    subscribe (observer) {
-        this._callSubscriber = observer
-    },
-    
-    dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
-
-        this._callSubscriber(this._state)
-    }
-
-}
+window.store = store
 
 export default store

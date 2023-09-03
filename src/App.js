@@ -9,11 +9,12 @@ import Settings from "./Components/Settings/Settings";
 import React from "react";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
-import axios from "axios";
+import {useSelector} from "react-redux";
 
 const App = ({store, state, dispatch}) => {
 
-    axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => console.log(response.data))
+    // let users = useSelector(state => state.usersPage)
+    // console.log(users)
 
     return (
         <div className="App">

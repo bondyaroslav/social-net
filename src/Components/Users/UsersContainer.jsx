@@ -1,11 +1,10 @@
-import React from 'react'
-import Users from "./Users";
 import {followUserActionCreator, setUsersActionCreator, unfollowUserActionCreator} from "../../redux/usersReducer";
 import {connect} from "react-redux";
+import Users from "./Users";
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage
     }
 }
 
