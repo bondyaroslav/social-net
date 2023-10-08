@@ -4,6 +4,7 @@ import DialogItem from "./DialogItem";
 import Message from "./Message";
 
 const Dialogs = (props) => {
+
     let state = props.dialogsPage
     let newMessageBody = state.newMessageBody
 

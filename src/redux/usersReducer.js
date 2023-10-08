@@ -1,6 +1,6 @@
 let initialState = [
-    {id: 1, followed: false, name: "Dima", status: "dev", location: {country: "USA", city: "New York"}},
-    {id: 2, followed: true, name: "Dima", status: "dev", location: {country: "USA", city: "New York"}},
+    // {id: 1, followed: false, name: "Dima", status: "dev", location: {country: "USA", city: "New York"}},
+    // {id: 2, followed: true, name: "Dima", status: "dev", location: {country: "USA", city: "New York"}},
 ]
 
 const FOLLOW_USER = "FOLLOW_USER"
@@ -28,7 +28,7 @@ export const usersReducer = (state = initialState, action) => {
                 })
             }
         case SET_USERS:
-            return {...state, users: [...state.users, action.payload]}
+            return [...state, action.payload]
         default:
             return state
     }

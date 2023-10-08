@@ -9,12 +9,8 @@ import Settings from "./Components/Settings/Settings";
 import React from "react";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
-import {useSelector} from "react-redux";
 
 const App = ({store, state, dispatch}) => {
-
-    // let users = useSelector(state => state.usersPage)
-    // console.log(users)
 
     return (
         <div className="App">

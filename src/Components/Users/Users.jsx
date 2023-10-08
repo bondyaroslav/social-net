@@ -1,19 +1,30 @@
 import React from "react";
 import axios from "axios";
 
-const Users = (props) => {
+class Users extends React.Component {
 
-    console.log(props.users)
+    componentDidMount() {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+            .then(response => {
+                response.data.items.map(item => {
+                    if (this.props.users.length === 0) {
+                        this.props.setUsers(item)
+                    }
+                })
+            })
+    }
 
-
-
-    return (
-        <div>{props.users.map(user =>
-            <div key={user.id}>
-                {user.id} {user.name} {user.followed} {user.status}
+    render() {
+        return (
+            <div>
+                {this.props.users.map(user =>
+                    <div key={user.id}>
+                        <p>{user.id}</p>
+                        <p>{user.name}</p>
+                    </div>)}
             </div>
-        )}</div>
-    )
+        )
+    }
 }
 
 export default Users
