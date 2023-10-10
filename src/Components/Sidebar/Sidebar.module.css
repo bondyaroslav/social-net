@@ -1,6 +1,6 @@
 .Sidebar {
     width: 20%;
-    height: 800px;
+    min-height: 100%;
     background-color: #313131;
     color: whitesmoke;
 }

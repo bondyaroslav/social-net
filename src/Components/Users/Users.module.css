@@ -1,0 +1,17 @@
+.Users {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 80%;
+    height: 90%;
+}
+
+.selectedPage {
+    text-decoration: darkorchid;
+}
+
+.user {
+    width: 100%;
+    height: 200px;
+    border: 1px solid black;
+}

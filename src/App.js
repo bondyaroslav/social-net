@@ -10,7 +10,7 @@ import React from "react";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 
-const App = ({store, state, dispatch}) => {
+const App = ({store, dispatch}) => {
 
     return (
         <div className="App">
@@ -21,7 +21,6 @@ const App = ({store, state, dispatch}) => {
                     <Route path="/profile" element={
                         <Profile store={store}
                                  dispatch={dispatch} />}/>
-
                     <Route path="/dialogs/*" element={ <DialogsContainer store={store} />}/>
                     <Route path="/users" element={ <UsersContainer />}/>
                     <Route path="/news" element={<News />}/>
