@@ -4,7 +4,8 @@ import {
     setUsersActionCreator,
     setCurrentPageActionCreator,
     setUsersTotalCountActionCreator,
-} from "../../redux/usersReducer";
+    setToggleFetching,
+} from "../../store/reducers/usersReducer";
 import {connect} from "react-redux";
 import Users from "./Users";
 
@@ -13,7 +14,8 @@ const mapStateToProps = (state) => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        toggleIsFetching: state.usersPage.toggleIsFetching
     }
 }
 
@@ -33,6 +35,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setUsersTotalCount: (totalCount) => {
             dispatch(setUsersTotalCountActionCreator(totalCount))
+        },
+        setToggleFetching: (toggleIsFetching) => {
+            dispatch(setToggleFetching(toggleIsFetching))
         }
     }
 }
