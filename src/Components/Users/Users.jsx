@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Users.module.css";
+import userPhoto from "../../assets/images/userPhoto.jpg"
 
 class Users extends React.Component {
     constructor(props) {
@@ -23,22 +24,20 @@ class Users extends React.Component {
             .then((data) => {
                 this.setState({users: data.items, toggleIsFetching: false})
             })
-
     }
 
     render() {
         const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-
         const pages = []
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i);
         }
-
         return (
             <div className={styles.Users}>
-                {this.state.toggleIsFetching ? <img className={styles.loading}
-                                              src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif?20170503175831"
-                                              alt={"Loading"}/> :
+                {this.state.toggleIsFetching ?
+                    <img className={styles.loading}
+                         src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif?20170503175831"
+                         alt={"loading"}/> :
 
                     <div className={styles.pages}>
                         {pages.map((page) => (
@@ -52,6 +51,7 @@ class Users extends React.Component {
                         ))}
                         {this.state.users.map((user) => (
                             <div className={styles.user} key={user.id}>
+                                <img className={styles.userPhoto} src={userPhoto}  alt={"loading"}/>
                                 <p>{user.id}</p>
                                 <p>{user.name}</p>
                             </div>
