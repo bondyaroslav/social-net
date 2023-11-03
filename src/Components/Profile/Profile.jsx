@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 import styles from './Profile.module.css'
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import ProfileInfo from "./ProfileInfo/ProfileInfo"
+import MyPostsContainer from "./MyPosts/MyPostsContainer"
 
-const Profile = (props) => {
+const Profile = ({store, profile}) => {
 
     return (
         <div className={styles.Profile}>
             <div className={styles.wrapper}>
-                <ProfileInfo />
-                <MyPostsContainer store={props.store}/>
+                <ProfileInfo profile={profile}/>
+                <MyPostsContainer/>
             </div>
         </div>
     );

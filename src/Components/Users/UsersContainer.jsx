@@ -5,9 +5,9 @@ import {
     setCurrentPage,
     setUsersTotalCount,
     setToggleFetching,
-} from "../../store/reducers/usersReducer";
-import {connect} from "react-redux";
-import Users from "./Users";
+} from "../../store/reducers/usersReducer"
+import {connect} from "react-redux"
+import Users from "./Users"
 
 const mapStateToProps = (state) => {
     return {

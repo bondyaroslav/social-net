@@ -1,66 +1,69 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Users.module.css";
-import userPhoto from "../../assets/images/userPhoto.jpg"
+import userPhoto from "../../assets/images/userPhoto.jpg";
+import { NavLink } from "react-router-dom";
+import {setCurrentProfile} from "../../store/reducers/profileReducer";
 
-class Users extends React.Component {
-    constructor(props) {
-        super(props)
+const Users = (props) => {
+    const [users, setUsers] = useState([]);
+    const [isFetching, setIsFetching] = useState(true);
 
-        this.state = {
-            users: [],
-            toggleIsFetching: true
-        };
-    }
+    useEffect(() => {
+        fetchUsers(props.currentPage, props.pageSize);
+    }, [props.currentPage, props.pageSize]);
 
-    componentDidMount() {
-        this.fetchUsers(this.props.currentPage, this.props.pageSize);
-    }
-
-    fetchUsers(page, pageSize) {
-        const url = `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`
+    const fetchUsers = (page, pageSize) => {
+        const url = `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`;
 
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                this.setState({users: data.items, toggleIsFetching: false})
-            })
-    }
+                setUsers(data.items);
+                setIsFetching(false);
+            });
+    };
 
-    render() {
-        const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-        const pages = []
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i);
-        }
-        return (
-            <div className={styles.Users}>
-                {this.state.toggleIsFetching ?
-                    <img className={styles.loading}
-                         src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif?20170503175831"
-                         alt={"loading"}/> :
 
-                    <div className={styles.pages}>
-                        {pages.map((page) => (
-                            <span
-                                className={styles.page}
-                                key={page}
-                                onClick={() => this.fetchUsers(page, this.props.pageSize)}
-                            >
-                                {page}
-                            </span>
-                        ))}
-                        {this.state.users.map((user) => (
-                            <div className={styles.user} key={user.id}>
-                                <img className={styles.userPhoto} src={userPhoto}  alt={"loading"}/>
-                                <p>{user.id}</p>
-                                <p>{user.name}</p>
-                            </div>
-                        ))}
-                    </div>
-                }
-            </div>
-        )
-    }
-}
+
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    const pages = Array.from({ length: pagesCount }, (_, i) => i + 1);
+
+    return (
+        <div className={styles.Users}>
+            {isFetching ? (
+                <img
+                    className={styles.loading}
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif?20170503175831"
+                    alt="loading"
+                />
+            ) : (
+                <div className={styles.pages}>
+                    {pages.map((page) => (
+                        <span
+                            className={styles.page}
+                            key={page}
+                            onClick={() => fetchUsers(page, props.pageSize)}
+                        >
+                            {page}
+                        </span>
+                    ))}
+                    {users.map((user) => (
+                        <div className={styles.user} key={user.id}>
+                            <NavLink to={"/profile/" + user.id}>
+                                <img
+                                    className={styles.userPhoto}
+                                    src={user.photos.small || userPhoto}
+                                    alt="user"
+                                />
+                            </NavLink>
+                            <p>{user.id}</p>
+                            <p>{user.name}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
 
 export default Users;
