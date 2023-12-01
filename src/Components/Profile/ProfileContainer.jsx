@@ -1,32 +1,37 @@
-import React from "react"
-import axios from "axios";
+import React, { useEffect } from "react"
 import Profile from "./Profile"
-import {connect} from "react-redux";
-import {setUserProfile} from "../../store/reducers/profileReducer";
+import styles from "./ProfileContainer.module.css"
+import { useDispatch, useSelector } from "react-redux"
+import { setUserProfile } from "../../store/reducers/profileReducer"
 
-class ProfileContainer extends React.Component {
+const ProfileContainer = () => {
+    const dispatch = useDispatch()
+    let profile = useSelector((profile) => profile.profilePage.profile)
+    useEffect(() => {
+        const fetchProfile = () => {
+            const url = `https://social-network.samuraijs.com/api/1.0/profile/2`
+            fetch(url)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok')
+                    }
+                    return response.json()
+                })
+                .then((json) => {
+                    dispatch(setUserProfile(json))
+                })
+                .catch((error) => {
+                    console.error('There has been a problem with your fetch operation:', error)
+                })
+        }
+        fetchProfile()
+    }, [dispatch])
 
-    componentDidMount() {
-        const url = `https://social-network.samuraijs.com/api/1.0/profile/2`
-        axios.get(url)
-            .then(response => {
-                this.props.setUserProfile(response.data)
-            })
-    }
-
-    render() {
-        return (
-            <Profile {...this.props} profile={this.props.profile}/>
-        )
-    }
+    return (
+        <div className={styles.ProfileContainer}>
+            <Profile profile={profile} />
+        </div>
+    )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        profile: state.profilePage.profile
-    }
-}
-
-export default connect(mapStateToProps, {
-    setUserProfile
-} ) (ProfileContainer)
+export default ProfileContainer

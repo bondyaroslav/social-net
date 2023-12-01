@@ -1,42 +1,37 @@
-import React, { useState, useEffect } from "react";
-import styles from "./Users.module.css";
-import userPhoto from "../../assets/images/userPhoto.jpg";
-import { NavLink } from "react-router-dom";
-import {setCurrentProfile} from "../../store/reducers/profileReducer";
+import React, { useState, useEffect } from "react"
+import styles from "./Users.module.css"
+import userPhoto from "../../assets/images/userPhoto.jpg"
+import { NavLink } from "react-router-dom"
+import Preloader from "../Preloader"
 
 const Users = (props) => {
-    const [users, setUsers] = useState([]);
-    const [isFetching, setIsFetching] = useState(true);
+    const [users, setUsers] = useState([])
+    const [isFetching, setIsFetching] = useState(true)
 
     useEffect(() => {
         fetchUsers(props.currentPage, props.pageSize);
     }, [props.currentPage, props.pageSize]);
 
     const fetchUsers = (page, pageSize) => {
-        const url = `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`;
+        const url = `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`
 
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                setUsers(data.items);
-                setIsFetching(false);
-            });
-    };
+                setUsers(data.items)
+                setIsFetching(false)
+            })
+    }
 
-
-
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    const pages = Array.from({ length: pagesCount }, (_, i) => i + 1);
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    const pages = Array.from({ length: pagesCount }, (_, i) => i + 1)
 
     return (
         <div className={styles.Users}>
             {isFetching ? (
-                <img
-                    className={styles.loading}
-                    src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif?20170503175831"
-                    alt="loading"
-                />
-            ) : (
+                <Preloader/>
+            ) :
+                (
                 <div className={styles.pages}>
                     {pages.map((page) => (
                         <span
@@ -63,7 +58,7 @@ const Users = (props) => {
                 </div>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default Users;
+export default Users

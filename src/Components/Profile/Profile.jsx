@@ -2,17 +2,20 @@ import React from 'react'
 import styles from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo/ProfileInfo"
 import MyPostsContainer from "./MyPosts/MyPostsContainer"
+import Preloader from "../Preloader"
 
-const Profile = ({store, profile}) => {
+const Profile = ({profile}) => {
 
-    return (
-        <div className={styles.Profile}>
-            <div className={styles.wrapper}>
+    if (profile !== null) {
+        return (
+            <div className={styles.Profile}>
                 <ProfileInfo profile={profile}/>
                 <MyPostsContainer/>
             </div>
-        </div>
-    );
-};
+        )
+    } else {
+        return <Preloader/>
+    }
+}
 
-export default Profile;
+export default Profile

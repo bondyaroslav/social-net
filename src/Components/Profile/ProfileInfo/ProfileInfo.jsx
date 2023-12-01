@@ -1,24 +1,23 @@
-import React from "react";
+import React from "react"
 import styles from "./ProfileInfo.module.css"
 
 const ProfileInfo = ({profile}) => {
     return (
-        <div className={styles.ProfileInfo}>
-            <div className={styles.background_photo}>background photo</div>
-            <img src={profile.photos.small} alt="loading"/>
-            <div>{profile.aboutMe}</div>
+        <div>
             <div>
-                <div>{profile.contacts.facebook}</div>
-                <div>{profile.contacts.website}</div>
-                <div>{profile.contacts.twitter}</div>
-                <div>{profile.contacts.instagram}</div>
-                <div>{profile.contacts.github}</div>
+                <img className={styles.backgroundPhoto} src={profile.photos.large} alt="loading"/>
+                <div className={styles.wrapper}>
+                    <img src={profile.photos.small} alt="loading"/>
+                    <div className={styles.aboutMeWrapper}>
+                        <div className={styles.fullName}>{profile.fullName}</div>
+                        <div>{profile.lookingForAJob === true ?
+                            <p>looking for a job</p>
+                            :
+                            <p>not looking for a job</p>}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>{profile.lookingForAJob}</div>
-            <div>{profile.lookingForAJobDescription}</div>
-            <div>{profile.fullName}</div>
-            <div>{profile.userId}</div>
-            <div className={styles.description}>description</div>
         </div>
     )
 }
