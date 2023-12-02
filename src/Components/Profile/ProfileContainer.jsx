@@ -7,9 +7,12 @@ import { setUserProfile } from "../../store/reducers/profileReducer"
 const ProfileContainer = () => {
     const dispatch = useDispatch()
     let profile = useSelector((profile) => profile.profilePage.profile)
+
+    let userId = 2
+
     useEffect(() => {
         const fetchProfile = () => {
-            const url = `https://social-network.samuraijs.com/api/1.0/profile/2`
+            const url = `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
             fetch(url)
                 .then((response) => {
                     if (!response.ok) {

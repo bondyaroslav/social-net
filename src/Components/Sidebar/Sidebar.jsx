@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './Sidebar.module.css';
-import {Link} from "react-router-dom";
+import React from 'react'
+import styles from './Sidebar.module.css'
+import {Link} from "react-router-dom"
 
 const Sidebar = () => {
     return (
@@ -14,7 +14,7 @@ const Sidebar = () => {
                 <div className={styles.item} itemID={"settings"}><Link to="/settings">Settings</Link></div>
             </nav>
         </div>
-    );
-};
+    )
+}
 
-export default Sidebar;
+export default Sidebar

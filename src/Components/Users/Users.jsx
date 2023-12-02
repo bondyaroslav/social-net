@@ -9,8 +9,8 @@ const Users = (props) => {
     const [isFetching, setIsFetching] = useState(true)
 
     useEffect(() => {
-        fetchUsers(props.currentPage, props.pageSize);
-    }, [props.currentPage, props.pageSize]);
+        fetchUsers(props.currentPage, props.pageSize)
+    }, [props.currentPage, props.pageSize])
 
     const fetchUsers = (page, pageSize) => {
         const url = `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`

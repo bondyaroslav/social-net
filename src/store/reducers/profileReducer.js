@@ -1,20 +1,18 @@
-const ADD_POST = "ADD-POST"
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
-const SET_USER_PROFILE = "SET_USER_PROFILE"
-
 let initialState = {
-    posts: [
-        {id: 1, message: "Hi, how are you?", likes: 11},
-        {id: 2, message: "My first post", likes: 20}],
+    posts: [],
     newPostText: "",
     profile: null,
 }
+
+const ADD_POST = "ADD_POST"
+const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
+const SET_USER_PROFILE = "SET_USER_PROFILE"
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
-                id: 5,
+                id: new Date().getTime(),
                 message: state.newPostText,
                 likes: 0
             }

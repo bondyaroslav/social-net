@@ -1,34 +1,34 @@
-import React from 'react';
+import React from 'react'
 import styles from "./MyPosts.module.css"
-import Post from "./Posts/Post";
+import Post from "./Posts/Post"
 
-const MyPosts = (props) => {
+const MyPosts = ({posts, newPostText, addPost, postChange}) => {
 
-    let postsElements = props.posts.map( p => <Post key={p.id} message={p.message} likesCount={p.likesCount} /> )
+    const postsElements = posts.map( p => <Post key={p.id} message={p.message} likesCount={p.likesCount} /> )
 
-    let newPostElement = React.createRef()
+    const newPostElement = React.createRef()
 
-    let onAddPost = () => {
-        props.addPost()
+    const onAddPost = () => {
+        addPost()
     }
 
-    let onPostChange = () => {
-        let text = newPostElement.current.value
-        props.postChange(text)
+    const onPostChange = () => {
+        const text = newPostElement.current.value
+        postChange(text)
     }
 
     return (
         <div className={styles.MyPosts}>
             <h3>My posts</h3>
             <div className={styles.addPost}>
-                <textarea ref={newPostElement} value={props.newPostText} onChange={onPostChange}></textarea>
+                <textarea ref={newPostElement} value={newPostText} onChange={onPostChange}></textarea>
                 <button onClick={onAddPost}>Add post</button>
             </div>
             <div className={styles.posts}>
                 {postsElements}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default MyPosts;
+export default MyPosts
