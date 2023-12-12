@@ -17,7 +17,8 @@ const App = ({store, dispatch}) => {
             <div className="wrapper">
                 <Sidebar/>
                 <Routes>
-                    <Route path="/profile" element={ <ProfileContainer store={store} dispatch={dispatch}/>}/>
+                    <Route path="/" element={ <ProfileContainer store={store} dispatch={dispatch}/>}/>
+                    <Route path="/profile/:userId"  element={ <ProfileContainer store={store} dispatch={dispatch}/>}/>
                     <Route path="/dialogs/*" element={ <DialogsContainer store={store} />}/>
                     <Route path="/users" element={ <UsersContainer />}/>
                     <Route path="/news" element={<News />}/>

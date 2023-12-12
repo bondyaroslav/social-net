@@ -6,7 +6,7 @@ const Sidebar = () => {
     return (
         <div className={styles.Sidebar}>
             <nav className={styles.nav}>
-                <div className={styles.item}><Link to="/profile">Profile</Link></div>
+                <div className={styles.item}><Link to="/">Profile</Link></div>
                 <div className={styles.item}><Link to="/dialogs">Messages</Link></div>
                 <div className={styles.item}><Link to="/users">Users</Link></div>
                 <div className={styles.item}><Link to="/news">News</Link></div>
