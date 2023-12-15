@@ -11,6 +11,10 @@ const ProfileContainer = () => {
 
     let {userId} = useParams()
 
+    if (userId === undefined) {
+        userId = 29913
+    }
+
     useEffect(() => {
         fetch(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then((response) => {
@@ -20,6 +24,7 @@ const ProfileContainer = () => {
                 dispatch(setUserProfile(json))
             })
     }, [dispatch]);
+
 
 
     return (

@@ -9,6 +9,7 @@ import Settings from "./Components/Settings/Settings"
 import React from "react"
 import DialogsContainer from "./Components/Dialogs/DialogsContainer"
 import UsersContainer from "./Components/Users/UsersContainer"
+import NotFoundPage from "./Components/NotFoundPage";
 
 const App = ({store, dispatch}) => {
     return (
@@ -17,13 +18,14 @@ const App = ({store, dispatch}) => {
             <div className="wrapper">
                 <Sidebar/>
                 <Routes>
-                    <Route path="/" element={ <ProfileContainer store={store} dispatch={dispatch}/>}/>
+                    <Route path="/profile" element={ <ProfileContainer store={store} dispatch={dispatch}/>}/>
                     <Route path="/profile/:userId"  element={ <ProfileContainer store={store} dispatch={dispatch}/>}/>
                     <Route path="/dialogs/*" element={ <DialogsContainer store={store} />}/>
                     <Route path="/users" element={ <UsersContainer />}/>
                     <Route path="/news" element={<News />}/>
                     <Route path="/music" element={<Music />}/>
                     <Route path="/settings" element={<Settings />}/>
+                    <Route path="*" element={<NotFoundPage />}/>
                 </Routes>
             </div>
         </div>
