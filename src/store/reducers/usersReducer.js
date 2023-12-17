@@ -4,6 +4,7 @@ let initialState = {
     totalUsersCount: 20,
     currentPage: 1,
     toggleIsFetching: false,
+    count: "sdf"
 }
 
 const FOLLOW_USER = "FOLLOW_USER"
@@ -17,8 +18,9 @@ const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW_USER:
             return {
-                ...state, users: state.users.map(user => {
-                    if (user.id !== action.userId) {
+                ...state,
+                users: state.users.map(user => {
+                    if (user.id === action.userId) {
                         return {...user, followed: true}
                     }
                     return user
@@ -26,8 +28,9 @@ const usersReducer = (state = initialState, action) => {
             }
         case UNFOLLOW_USER:
             return {
-                ...state, users: state.users.map(user => {
-                    if (user.id !== action.userId) {
+                ...state,
+                users: state.users.map(user => {
+                    if (user.id === action.userId) {
                         return {...user, followed: false}
                     }
                     return user
@@ -58,8 +61,8 @@ const usersReducer = (state = initialState, action) => {
     }
 }
 
-export const followUser = (userId) => ({type: FOLLOW_USER, userId})
-export const unfollowUser = (userId) => ({type: UNFOLLOW_USER, userId})
+export const followUserAC = (userId) => ({type: FOLLOW_USER, userId})
+export const unfollowUserAC = (userId) => ({type: UNFOLLOW_USER, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setUsersTotalCount = (totalCount)  => ({type: SET_USERS_TOTAL_COUNT, totalCount})

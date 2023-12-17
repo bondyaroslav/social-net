@@ -1,6 +1,6 @@
 import {
-    followUser,
-    unfollowUser,
+    followUserAC,
+    unfollowUserAC,
     setUsers,
     setCurrentPage,
     setUsersTotalCount,
@@ -15,13 +15,14 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        toggleIsFetching: state.usersPage.toggleIsFetching
+        toggleIsFetching: state.usersPage.toggleIsFetching,
+        count: state.usersPage.count
     }
 }
 
 export default connect(mapStateToProps, {
-    followUser,
-    unfollowUser,
+    followUserAC,
+    unfollowUserAC,
     setUsers,
     setCurrentPage,
     setUsersTotalCount,
