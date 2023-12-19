@@ -1,5 +1,5 @@
 import './App.css'
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import {Route, Routes} from "react-router-dom"
 import Header from "./Components/Header/Header"
 import Sidebar from "./Components/Sidebar/Sidebar"
@@ -19,6 +19,7 @@ const App = ({store}) => {
 
     const dispatch = useDispatch()
     const authStatus = useSelector( state => (state.auth.isAuth) )
+    const [userId, setUserId] = useState(null)
 
     useEffect(() => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
@@ -27,18 +28,17 @@ const App = ({store}) => {
                     const {mail, userId, login} = response.data.data
                     dispatch(setAuthUserDataAC(mail, userId, login))
                     dispatch(setIsAuthAC(true))
+                    setUserId(response.data.data.id)
                 }
             } )
     }, [])
-
-    console.log(authStatus)
 
     if (authStatus === true) {
         return (
             <div className="App">
                 <Header/>
                 <div className="wrapper">
-                    <Sidebar/>
+                    <Sidebar userId={userId}/>
                     <Routes>
                         <Route path="/profile" element={ <ProfileContainer store={store} />}/>
                         <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>

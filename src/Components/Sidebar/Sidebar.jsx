@@ -2,11 +2,11 @@ import React from 'react'
 import styles from './Sidebar.module.css'
 import {Link} from "react-router-dom"
 
-const Sidebar = () => {
+const Sidebar = ({userId}) => {
     return (
         <div className={styles.Sidebar}>
             <nav className={styles.nav}>
-                <div className={styles.item}><Link to="/profile">Profile</Link></div>
+                <div className={styles.item}><Link to={`/profile/${userId}`}>Profile</Link></div>
                 <div className={styles.item}><Link to="/dialogs">Messages</Link></div>
                 <div className={styles.item}><Link to="/users">Users</Link></div>
                 <div className={styles.item}><Link to="/news">News</Link></div>
