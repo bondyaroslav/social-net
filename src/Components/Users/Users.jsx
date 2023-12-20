@@ -4,8 +4,9 @@ import userPhoto from "../../assets/images/userPhoto.jpg"
 import {NavLink} from "react-router-dom"
 import Preloader from "../Preloader"
 import {useDispatch} from "react-redux";
+import axios from "axios";
 
-const Users = ({currentPage, pageSize, totalUsersCount, followUserAC, unfollowUserAC, count}) => {
+const Users = ({currentPage, pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
 
     const dispatch = useDispatch()
     const [users, setUsers] = useState([])
@@ -16,40 +17,40 @@ const Users = ({currentPage, pageSize, totalUsersCount, followUserAC, unfollowUs
     }, [currentPage, pageSize])
 
     const fetchUsers = (page, pageSize) => {
-        const url = `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`
-
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
-                setUsers(data.items)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`, {withCredentials: true})
+            .then((response) => {
+                setUsers(response.data.items)
                 setIsFetching(false)
             })
     }
-
-    // const isFollow = () => {
-    //     fetch(`https://social-network.samuraijs.com/api/1.0/follow/${30500}`)
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             console.log(data)
-    //         })
-    // }
 
     const pagesCount = Math.ceil(totalUsersCount / pageSize)
     const pages = Array.from({length: pagesCount}, (_, i) => i + 1)
 
     const follow = (userId) => {
-        dispatch(followUserAC(userId))
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, null, {withCredentials: true})
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(followUserAC(userId))
+                }
+            })
     }
 
     const unfollow = (userId) => {
-        dispatch(unfollowUserAC(userId))
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {withCredentials: true})
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(unfollowUserAC(userId))
+                }
+            })
     }
+
 
     return (
         <div className={styles.Users}>
-            {isFetching ? (
-                    <Preloader/>
-                ) :
+            {isFetching ?
+                (<Preloader/>)
+                :
                 (
                     <div className={styles.pages}>
                         {pages.map((page) => (
@@ -76,9 +77,13 @@ const Users = ({currentPage, pageSize, totalUsersCount, followUserAC, unfollowUs
                                 {
                                     user.followed
                                         ?
-                                        <button onClick={() => { unfollow(user.id) }}>unfollow</button>
+                                        <button onClick={() => { unfollow(user.id) }}>
+                                            unfollow
+                                        </button>
                                         :
-                                        <button onClick={() => { follow(user.id) }}>follow</button>
+                                        <button onClick={() => { follow(user.id) }}>
+                                            follow
+                                        </button>
                                 }
                             </div>
                         ))}

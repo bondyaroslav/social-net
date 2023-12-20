@@ -16,7 +16,6 @@ const mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         toggleIsFetching: state.usersPage.toggleIsFetching,
-        count: state.usersPage.count
     }
 }
 

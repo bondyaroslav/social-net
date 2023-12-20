@@ -31,7 +31,7 @@ const App = ({store}) => {
                     setUserId(response.data.data.id)
                 }
             } )
-    }, [])
+    }, [dispatch])
 
     if (authStatus === true) {
         return (
@@ -40,7 +40,7 @@ const App = ({store}) => {
                 <div className="wrapper">
                     <Sidebar userId={userId}/>
                     <Routes>
-                        <Route path="/profile" element={ <ProfileContainer store={store} />}/>
+                        <Route path="/" element={ <ProfileContainer store={store} currentUserId={userId} />}/>
                         <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>
                         <Route path="/dialogs/*" element={ <DialogsContainer store={store} />}/>
                         <Route path="/users" element={ <UsersContainer />}/>
