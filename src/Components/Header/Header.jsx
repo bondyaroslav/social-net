@@ -1,11 +1,20 @@
 import React from 'react'
-import styles from './Header.module.css'
-import companyLogo from "../../assets/images/companyLogo.png"
 
 const Header = () => {
     return (
-        <div className={styles.Header}>
-            <img className={styles.logo} src={companyLogo} alt="asd"/>
+        <div style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            width: "100%",
+            height: 100,
+            backgroundColor: "#313131"
+        }}>
+            <h3 style={{
+                fontSize: 40,
+                color: "whitesmoke",
+                marginLeft: 20,
+            }}>social net</h3>
         </div>
     )
 }
