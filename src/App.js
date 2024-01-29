@@ -11,9 +11,9 @@ import DialogsContainer from "./Components/Dialogs/DialogsContainer"
 import UsersContainer from "./Components/Users/UsersContainer"
 import NotFoundPage from "./Components/NotFoundPage"
 import AuthPage from "./Components/AuthPage"
-import axios from "axios";
-import {useDispatch, useSelector} from "react-redux";
-import {setAuthUserDataAC, setIsAuthAC} from "./store/reducers/authReducer";
+import axios from "axios"
+import {useDispatch, useSelector} from "react-redux"
+import {setAuthUserDataAC, setIsAuthAC} from "./store/reducers/authReducer"
 
 const App = ({store}) => {
 
