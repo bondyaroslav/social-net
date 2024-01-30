@@ -1,19 +1,53 @@
 import React from 'react'
-import styles from './Sidebar.module.css'
-import {Link} from "react-router-dom"
+import { Link } from 'react-router-dom'
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider } from '@mui/material'
+import { AccountCircle, Message, People, LibraryBooks, MusicNote, Settings } from '@mui/icons-material'
 
 const Sidebar = ({userId}) => {
     return (
-        <div className={styles.Sidebar}>
-            <nav className={styles.nav}>
-                <div className={styles.item}><Link to={`/profile/${userId}`}>Profile</Link></div>
-                <div className={styles.item}><Link to="/dialogs">Messages</Link></div>
-                <div className={styles.item}><Link to="/users">Users</Link></div>
-                <div className={styles.item}><Link to="/news">News</Link></div>
-                <div className={styles.item}><Link to="/music">Music</Link></div>
-                <div className={styles.item} itemID={"settings"}><Link to="/settings">Settings</Link></div>
-            </nav>
-        </div>
+        <Drawer variant="permanent" >
+            <List>
+                <ListItem button component={Link} to={`/profile/${userId}`}>
+                    <ListItemIcon>
+                        <AccountCircle />
+                    </ListItemIcon>
+                    <ListItemText primary="Profile" />
+                </ListItem>
+                <ListItem button component={Link} to="/dialogs">
+                    <ListItemIcon>
+                        <Message />
+                    </ListItemIcon>
+                    <ListItemText primary="Messages" />
+                </ListItem>
+                <ListItem button component={Link} to="/users">
+                    <ListItemIcon>
+                        <People />
+                    </ListItemIcon>
+                    <ListItemText primary="Users" />
+                </ListItem>
+                <ListItem button component={Link} to="/news">
+                    <ListItemIcon>
+                        <LibraryBooks />
+                    </ListItemIcon>
+                    <ListItemText primary="News" />
+                </ListItem>
+                <ListItem button component={Link} to="/music">
+                    <ListItemIcon>
+                        <MusicNote />
+                    </ListItemIcon>
+                    <ListItemText primary="Music" />
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
+                <ListItem button component={Link} to="/settings">
+                    <ListItemIcon>
+                        <Settings />
+                    </ListItemIcon>
+                    <ListItemText primary="Settings" />
+                </ListItem>
+            </List>
+        </Drawer>
     )
 }
 
