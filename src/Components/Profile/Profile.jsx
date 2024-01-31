@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Profile.module.css'
-import ProfileInfo from "./ProfileInfo/ProfileInfo"
-import MyPostsContainer from "./MyPosts/MyPostsContainer"
+import ProfileInfo from "./ProfileInfo"
+import MyPostsContainer from "./MyPostsContainer"
 import Preloader from "../Preloader"
 
 const Profile = ({profile}) => {

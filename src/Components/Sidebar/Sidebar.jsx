@@ -5,8 +5,8 @@ import { AccountCircle, Message, People, LibraryBooks, MusicNote, Settings } fro
 
 const Sidebar = ({userId}) => {
     return (
-        <Drawer variant="permanent" >
-            <List>
+        <Drawer variant="permanent">
+            <List style={{width: 200}}>
                 <ListItem button component={Link} to={`/profile/${userId}`}>
                     <ListItemIcon>
                         <AccountCircle />
