@@ -45,7 +45,6 @@ const Users = ({currentPage, pageSize, totalUsersCount, followUserAC, unfollowUs
             })
     }
 
-
     return (
         <div className={styles.Users}>
             {isFetching ?

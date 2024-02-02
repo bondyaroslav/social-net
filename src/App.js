@@ -36,9 +36,9 @@ const App = ({store}) => {
     if (authStatus === true) {
         return (
             <div className="App">
-                <Header/>
-                <div className="wrapper">
-                    <Sidebar userId={userId}/>
+                <Sidebar userId={userId}/>
+                <div className={"wrapper"}>
+                    <Header/>
                     <Routes>
                         <Route path="/" element={ <ProfileContainer store={store} currentUserId={userId} />}/>
                         <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>
@@ -51,6 +51,7 @@ const App = ({store}) => {
                     </Routes>
                 </div>
             </div>
+
         )
     } else return <AuthPage/>
 }

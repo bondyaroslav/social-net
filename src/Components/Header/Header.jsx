@@ -6,7 +6,6 @@ const Header = () => {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            width: "100%",
             minHeight: 70,
             backgroundColor: "#313131"
         }}>

@@ -14,6 +14,9 @@
 }
 .wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-content: center;
+
     height: 100%;
+
 }

@@ -25,7 +25,7 @@ const News = () => {
     console.log(news)
 
     return (
-        <div>
+        <div style={{width: "60%", marginLeft: 400, marginTop: 30}}>
             {news.map( el => (
                 <Card style={{ marginBottom: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
                     <CardContent>
