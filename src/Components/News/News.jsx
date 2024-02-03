@@ -11,7 +11,6 @@ const News = () => {
         if (news.length === 0) {
             fetch(url)
                 .then( response => response.json() )
-                // .then( json => console.log(json.articles) )
                 .then( json => {if(json.length !== 0) {
                     setNews(json.articles)
                 }})
@@ -25,7 +24,7 @@ const News = () => {
     console.log(news)
 
     return (
-        <div style={{width: "60%", marginLeft: 400, marginTop: 30}}>
+        <div style={{ marginTop: 30}}>
             {news.map( el => (
                 <Card style={{ marginBottom: '20px', borderRadius: '8px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
                     <CardContent>
