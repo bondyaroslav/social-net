@@ -36,9 +36,9 @@ const App = ({store}) => {
     if (authStatus === true) {
         return (
             <div className="App">
-                <Header/>
+                <Sidebar userId={userId}/>
                 <div className="wrapper">
-                    <Sidebar userId={userId}/>
+                    <Header/>
                     <Routes>
                         <Route path="/" element={ <ProfileContainer store={store} currentUserId={userId} />}/>
                         <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>
