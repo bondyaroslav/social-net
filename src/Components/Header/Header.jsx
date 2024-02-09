@@ -11,9 +11,10 @@ const Header = () => {
         }}>
             <h3 style={{
                 fontSize: 40,
+                verticalAlign: "middle",
                 color: "whitesmoke",
                 marginLeft: 20,
-            }}>social net</h3>
+            }}>SOCIAL NET</h3>
         </div>
     )
 }

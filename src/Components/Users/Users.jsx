@@ -3,14 +3,17 @@ import styles from "./Users.module.css"
 import userPhoto from "../../assets/images/userPhoto.jpg"
 import {NavLink} from "react-router-dom"
 import Preloader from "../Preloader"
-import {useDispatch} from "react-redux";
-import axios from "axios";
+import {useDispatch} from "react-redux"
+import axios from "axios"
+import {Box, Container} from "@mui/system"
+import {Button, Card, Pagination, Paper, Toolbar, Typography} from "@mui/material"
 
-const Users = ({currentPage, pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
+const Users = ({pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
 
     const dispatch = useDispatch()
     const [users, setUsers] = useState([])
     const [isFetching, setIsFetching] = useState(true)
+    const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
         fetchUsers(currentPage, pageSize)
@@ -45,50 +48,39 @@ const Users = ({currentPage, pageSize, totalUsersCount, followUserAC, unfollowUs
             })
     }
 
+    const onChangePage = (event, page) => {
+        setCurrentPage(page)
+    }
+
     return (
-        <div className={styles.Users}>
+        <Container>
             {isFetching ?
-                (<Preloader/>)
+                <Preloader/>
                 :
-                (
-                    <div className={styles.pages}>
-                        {pages.map((page) => (
-                            <span
-                                className={styles.page}
-                                key={page}
-                                onClick={() => fetchUsers(page, pageSize)}
-                            >
-                            {page}
-                        </span>
-                        ))}
-                        {users.map((user) => (
-                            <div className={styles.user} key={user.id}>
-                                <NavLink to={`/profile/${user.id}`}>
-                                    <img
-                                        className={styles.userPhoto}
-                                        src={user.photos.small || userPhoto}
-                                        alt="user"
-                                    />
-                                </NavLink>
-                                <p>{user.id}</p>
-                                <p>{user.name}</p>
-                                <p>followed: {user.followed ? "true" : "false"}</p>
-                                {
-                                    user.followed
-                                        ?
-                                        <button onClick={() => { unfollow(user.id) }}>
-                                            unfollow
-                                        </button>
-                                        :
-                                        <button onClick={() => { follow(user.id) }}>
-                                            follow
-                                        </button>
-                                }
-                            </div>
-                        ))}
-                    </div>
-                )}
-        </div>
+                <Box>
+                    {users.map((user) => (
+                        <Card key={user.id}>
+                            <NavLink to={`/profile/${user.id}`}>
+                                <img style={{width: "10%", height: "10%"}} src={user.photos.small || userPhoto}/>
+                                <Typography>
+                                    {user.name}
+                                    {user.id}
+                                    {user.status}
+                                </Typography>
+                                {user.followed}
+                            </NavLink>
+                        </Card>
+                    ))}
+
+                    <Pagination
+                        count={Math.ceil(totalUsersCount / pageSize)}
+                        page={currentPage}
+                        onChange={onChangePage}
+                    >
+                    </Pagination>
+                </Box>
+            }
+        </Container>
     )
 }
 
