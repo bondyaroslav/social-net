@@ -1,10 +1,9 @@
 let initialState = {
     users: [],
-    pageSize: 4,
-    totalUsersCount: 20,
+    pageSize: 5,
+    totalUsersCount: 100,
     currentPage: 1,
     toggleIsFetching: false,
-    count: "sdf"
 }
 
 const FOLLOW_USER = "FOLLOW_USER"
