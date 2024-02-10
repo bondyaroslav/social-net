@@ -1,39 +1,43 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from "./MyPosts.module.css"
 import Post from "./Post"
-import {TextField} from "@mui/material"
+import {Button, TextField} from "@mui/material"
+import {Box} from "@mui/system"
 
-const MyPosts = ({posts, newPostText, addPost, postChange}) => {
+const MyPosts = () => {
 
-    const newPostElement = React.createRef()
+    const [posts, setPosts] = useState([])
+    const [postName, setPostName] = useState("")
 
-    const onAddPost = () => {
-        addPost()
+    const addPost = () => {
+        const id = new Date().getTime()
+        const date = new Date(id)
+        const newPost = {
+            id: id,
+            name: postName,
+            date: `${date}`,
+        }
+        setPosts([...posts, newPost])
+        setPostName("")
     }
 
-    const onPostChange = () => {
-        const text = newPostElement.current.value
-        postChange(text)
-        console.log(text)
+    const onInputName = (name) => {
+        setPostName(name)
     }
 
     return (
-        <div className={styles.MyPosts}>
+        <box className={styles.MyPosts}>
             <h3>My posts</h3>
-            <div className={styles.addPost}>
-                <TextField ref={newPostElement} value={newPostText} onChange={onPostChange}></TextField>
-                <button onClick={onAddPost}>Add post</button>
-            </div>
-            <div className={styles.posts}>
-                {posts.map( p =>
-                    <Post
-                        key={p.id}
-                        message={p.message}
-                        likesCount={p.likesCount}
-                    />
-                )}
-            </div>
-        </div>
+            <Box className={styles.addPost}>
+                <TextField value={postName} onChange={ (event) => {onInputName(event.target.value)} }></TextField>
+                <Button onClick={ addPost }>Add post</Button>
+            </Box>
+            <Box className={styles.posts}>
+                {posts.map((p) => (
+                    <Post key={p.id} id={p.id} name={p.name} date={p.date}></Post>
+                ))}
+            </Box>
+        </box>
     )
 }
 

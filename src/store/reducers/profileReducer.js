@@ -1,5 +1,7 @@
 let initialState = {
-    posts: [],
+    posts: [
+        {id: 1, message: "123", likesCount: 2}
+    ],
     newPostText: "",
     profile: null,
 }

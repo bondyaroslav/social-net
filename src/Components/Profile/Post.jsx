@@ -1,13 +1,22 @@
-import React from 'react';
-import styles from './Post.module.css'
+import React from 'react'
+import {Card} from "@mui/material"
 
-const Post = (props) => {
+const Post = ({name, likesCount, date}) => {
     return (
-        <div className={styles.Post}>
-            <div className={styles.message}>{props.message}</div>
-            <span>{props.likesCount}</span>
-        </div>
-    );
-};
+        <Card style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            maxWidth: "60%",
+            margin: 20,
+            minHeight: 100
+        }}>
+            <p style={{overflowWrap: "break-word"}}>{name}</p>
+            <p>{likesCount}</p>
+            <p>{date}</p>
+        </Card>
+    )
+}
 
-export default Post;
+export default Post
