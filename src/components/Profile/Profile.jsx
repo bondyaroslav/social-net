@@ -1,18 +1,31 @@
 import React from 'react'
 import styles from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo"
-import MyPostsContainer from "./MyPostsContainer"
 import Preloader from "../Preloader"
+import {Box} from "@mui/system"
+import MyPosts from "./MyPosts"
 
-const Profile = ({profile}) => {
+const Profile = ({profile, authUserId}) => {
+
+    console.log(profile)
 
     return (
         profile
             ?
-            <div className={styles.Profile}>
-                <ProfileInfo profile={profile}/>
-                <MyPostsContainer/>
-            </div>
+            <Box className={styles.Profile}>
+                {authUserId === profile.userId
+                ?
+                    <>
+                        <ProfileInfo profile={profile} isItAuthUserAccount={true}/>
+                        <MyPosts isItAuthUserAccount={true}/>
+                    </>
+                :
+                    <>
+                        <ProfileInfo profile={profile}/>
+                        <MyPosts/>
+                    </>
+                }
+            </Box>
             :
             <Preloader/>
     )

@@ -13,7 +13,7 @@ import NotFoundPage from "./components/NotFoundPage"
 import AuthPage from "./components/AuthPage"
 import axios from "axios"
 import {useDispatch, useSelector} from "react-redux"
-import {setAuthUserDataAC, setIsAuthAC} from "./store/reducers/authReducer"
+import {setIsAuthAC, setUserEmailAC, setUserIdAC, setUserLoginAC} from "./store/reducers/authReducer"
 
 const App = ({store}) => {
 
@@ -25,13 +25,19 @@ const App = ({store}) => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
             .then( response => {
                 if (response.data.resultCode === 0) {
-                    const {mail, userId, login} = response.data.data
-                    dispatch(setAuthUserDataAC(mail, userId, login))
                     dispatch(setIsAuthAC(true))
-                    setUserId(response.data.data.id)
+                    const email = response.data.data.email
+                    const id = response.data.data.id
+                    const login = response.data.data.login
+                    dispatch(setUserEmailAC(email))
+                    dispatch(setUserIdAC(id))
+                    dispatch(setUserLoginAC(login))
+                    setUserId(id)
                 }
             } )
     }, [dispatch])
+
+    console.log(authStatus)
 
     if (authStatus === true) {
         return (
@@ -40,7 +46,7 @@ const App = ({store}) => {
                 <div className={"wrapper"}>
                     <Header/>
                     <Routes>
-                        <Route path="/" element={ <ProfileContainer store={store} currentUserId={userId} />}/>
+                        <Route path="/" element={ <ProfileContainer store={store} userId={userId}/>}/>
                         <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>
                         <Route path="/dialogs/*" element={ <DialogsContainer store={store} />}/>
                         <Route path="/users" element={ <UsersContainer />}/>

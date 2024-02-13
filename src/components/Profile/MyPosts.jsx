@@ -3,7 +3,7 @@ import Post from "./Post"
 import {Button, TextField, Typography} from "@mui/material"
 import {Box} from "@mui/system"
 
-const MyPosts = () => {
+const MyPosts = ({isItAuthUserAccount}) => {
 
     const [posts, setPosts] = useState([])
     const [postName, setPostName] = useState("")
@@ -34,20 +34,28 @@ const MyPosts = () => {
 
     return (
         <Box style={{margin: 20}}>
-            <Typography>My posts</Typography>
-            <Box style={{display: "flex"}}>
-                <TextField
-                    style={{width: 300}}
-                    value={postName}
-                    onChange={(event) => {onInputName(event.target.value)}}
-                />
-                <Button
-                    style={{marginLeft: 5}}
-                    onClick={addPost}
-                >
-                    Add post
-                </Button>
-            </Box>
+            {isItAuthUserAccount
+                ?
+                <>
+                    <Typography>My posts</Typography>
+                    <Box style={{display: "flex"}}>
+                        <TextField
+                            style={{width: 300}}
+                            value={postName}
+                            onChange={(event) => {onInputName(event.target.value)}}
+                        />
+                        <Button
+                            style={{marginLeft: 5}}
+                            onClick={addPost}
+                        >
+                            Add post
+                        </Button>
+                    </Box>
+                </>
+
+                :
+                null
+            }
             <Box>
                 {posts.map((p) => (
                     <Post key={p.id} id={p.id} name={p.name} date={p.date}></Post>
@@ -58,3 +66,5 @@ const MyPosts = () => {
 }
 
 export default MyPosts
+
+

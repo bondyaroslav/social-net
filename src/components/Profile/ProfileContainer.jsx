@@ -4,32 +4,25 @@ import styles from "./ProfileContainer.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { setUserProfile } from "../../store/reducers/profileReducer"
 import {useParams} from "react-router-dom"
+import axios from "axios"
 
 const ProfileContainer = () => {
     const dispatch = useDispatch()
     let profile = useSelector((profile) => profile.profilePage.profile)
-
     let {userId} = useParams()
 
-    if (userId === undefined) {
-        userId = 29913
-    }
+    const authUserId = useSelector(state => state.auth.id)
 
     useEffect(() => {
-        fetch(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then((response) => {
-                return response.json()
+                dispatch(setUserProfile(response.data))
             })
-            .then((json) => {
-                dispatch(setUserProfile(json))
-            })
-    }, [dispatch])
-
-
+    }, [userId])
 
     return (
         <div className={styles.ProfileContainer}>
-            <Profile profile={profile} />
+            <Profile profile={profile} authUserId={authUserId}/>
         </div>
     )
 }

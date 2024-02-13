@@ -2,7 +2,7 @@ import React from "react"
 import {Box} from "@mui/system"
 import userPhoto from "../../assets/images/userPhoto.jpg"
 
-const ProfileInfo = ({profile}) => {
+const ProfileInfo = ({profile, isItAuthUserAccount}) => {
 
     return (
         <Box>
