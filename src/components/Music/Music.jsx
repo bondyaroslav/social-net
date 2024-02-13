@@ -14,7 +14,7 @@ const Music = () => {
         { name: "name6", album: "album6", id: 6 },
         { name: "name7", album: "album7", id: 7 },
         { name: "name8", album: "album8", id: 8 },
-        { name: "name9", album: "album9", id: 9 }
+        { name: "name9", album: "album9", id: 9 },
     ]
 
     const paginate = (array, pageSize, currentPage) => {

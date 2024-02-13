@@ -3,7 +3,7 @@ import Profile from "./Profile"
 import styles from "./ProfileContainer.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { setUserProfile } from "../../store/reducers/profileReducer"
-import {useParams} from "react-router-dom";
+import {useParams} from "react-router-dom"
 
 const ProfileContainer = () => {
     const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const ProfileContainer = () => {
             .then((json) => {
                 dispatch(setUserProfile(json))
             })
-    }, [dispatch]);
+    }, [dispatch])
 
 
 
