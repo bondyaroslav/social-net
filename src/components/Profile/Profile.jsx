@@ -6,16 +6,16 @@ import Preloader from "../Preloader"
 
 const Profile = ({profile}) => {
 
-    if (profile !== null) {
-        return (
+    return (
+        profile
+            ?
             <div className={styles.Profile}>
                 <ProfileInfo profile={profile}/>
                 <MyPostsContainer/>
             </div>
-        )
-    } else {
-        return <Preloader/>
-    }
+            :
+            <Preloader/>
+    )
 }
 
 export default Profile
