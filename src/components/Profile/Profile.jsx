@@ -21,7 +21,7 @@ const Profile = ({profile, authUserId}) => {
                     </>
                 :
                     <>
-                        <ProfileInfo profile={profile}/>
+                        <ProfileInfo profile={profile} isItAuthUserAccount={false}/>
                         <MyPosts/>
                     </>
                 }

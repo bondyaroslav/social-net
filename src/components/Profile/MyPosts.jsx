@@ -56,7 +56,7 @@ const MyPosts = ({isItAuthUserAccount}) => {
                 :
                 null
             }
-            <Box>
+            <Box style={{display: "flex", flexDirection: "column-reverse"}}>
                 {posts.map((p) => (
                     <Post key={p.id} id={p.id} name={p.name} date={p.date}></Post>
                 ))}
