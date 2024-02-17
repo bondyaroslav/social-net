@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react"
-import styles from "./Users.module.css"
 import userPhoto from "../../assets/images/userPhoto.jpg"
 import {NavLink} from "react-router-dom"
 import Preloader from "../Preloader"
@@ -7,6 +6,7 @@ import {useDispatch} from "react-redux"
 import axios from "axios"
 import {Box, Container} from "@mui/system"
 import {Button, Card, Pagination, Paper, Toolbar, Typography} from "@mui/material"
+import {usersAPI} from "../../api/api"
 
 const Users = ({pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
 

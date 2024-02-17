@@ -1,5 +1,5 @@
 import './App.css'
-import React, {useEffect, useState} from "react"
+import React, {useEffect} from "react"
 import {Route, Routes} from "react-router-dom"
 import Header from "./components/Header/Header"
 import Sidebar from "./components/Sidebar/Sidebar"
@@ -19,7 +19,7 @@ const App = ({store}) => {
 
     const dispatch = useDispatch()
     const authStatus = useSelector( state => (state.auth.isAuth) )
-    const [userId, setUserId] = useState(null)
+    const userId = useSelector( state => state.auth.id )
 
     useEffect(() => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
@@ -32,12 +32,9 @@ const App = ({store}) => {
                     dispatch(setUserEmailAC(email))
                     dispatch(setUserIdAC(id))
                     dispatch(setUserLoginAC(login))
-                    setUserId(id)
                 }
-            } )
+            })
     }, [dispatch])
-
-    console.log(authStatus)
 
     if (authStatus === true) {
         return (
@@ -46,7 +43,7 @@ const App = ({store}) => {
                 <div className={"wrapper"}>
                     <Header/>
                     <Routes>
-                        <Route path="/" element={ <ProfileContainer store={store} userId={userId}/>}/>
+                        <Route path="/" element={ <ProfileContainer store={store} userId={userId} />}/>
                         <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>
                         <Route path="/dialogs/*" element={ <DialogsContainer store={store} />}/>
                         <Route path="/users" element={ <UsersContainer />}/>
@@ -57,7 +54,6 @@ const App = ({store}) => {
                     </Routes>
                 </div>
             </div>
-
         )
     } else return <AuthPage/>
 }

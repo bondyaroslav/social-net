@@ -6,9 +6,6 @@ import {Box} from "@mui/system"
 import MyPosts from "./MyPosts"
 
 const Profile = ({profile, authUserId}) => {
-
-    console.log(profile)
-
     return (
         profile
             ?
