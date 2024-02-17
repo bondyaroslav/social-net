@@ -18,13 +18,10 @@ const MyPosts = ({isItAuthUserAccount}) => {
             hour: 'numeric',
             minute: 'numeric',
         }).format(date)
-
-        const newPost = {
-            id: id,
-            name: postName,
-            date: formattedDate,
-        }
-        setPosts([...posts, newPost])
+        const newPost = {id: id, name: postName, date: formattedDate}
+        if (postName === "") {
+            return 0
+        } else setPosts([...posts, newPost])
         setPostName("")
     }
 
