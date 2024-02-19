@@ -5,8 +5,7 @@ import Preloader from "../Preloader"
 import {useDispatch} from "react-redux"
 import axios from "axios"
 import {Box, Container} from "@mui/system"
-import {Button, Card, Pagination, Paper, Toolbar, Typography} from "@mui/material"
-import {usersAPI} from "../../api/api"
+import {Button, Card, Pagination, Typography} from "@mui/material"
 
 const Users = ({pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
 
@@ -17,7 +16,7 @@ const Users = ({pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
 
     useEffect(() => {
         fetchUsers(currentPage, pageSize)
-    }, [currentPage, pageSize])
+    }, [currentPage])
 
     const fetchUsers = (page, pageSize) => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`, {withCredentials: true})
@@ -27,13 +26,11 @@ const Users = ({pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
             })
     }
 
-    const pagesCount = Math.ceil(totalUsersCount / pageSize)
-    const pages = Array.from({length: pagesCount}, (_, i) => i + 1)
-
     const follow = (userId) => {
         axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, null, {withCredentials: true})
             .then(response => {
                 if (response.data.resultCode === 0) {
+                    setUsers(users.map(user => user.id === userId ? { ...user, followed: true } : user))
                     dispatch(followUserAC(userId))
                 }
             })
@@ -43,6 +40,7 @@ const Users = ({pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
         axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {withCredentials: true})
             .then(response => {
                 if (response.data.resultCode === 0) {
+                    setUsers(users.map(user => user.id === userId ? { ...user, followed: false } : user))
                     dispatch(unfollowUserAC(userId))
                 }
             })
@@ -59,16 +57,23 @@ const Users = ({pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
                 :
                 <Box>
                     {users.map((user) => (
-                        <Card key={user.id}>
-                            <NavLink to={`/profile/${user.id}`}>
-                                <img style={{width: "10%", height: "10%"}} src={user.photos.small || userPhoto}/>
-                                <Typography>
-                                    {user.name}
-                                    {user.id}
-                                    {user.status}
-                                </Typography>
-                                {user.followed}
-                            </NavLink>
+                        <Card key={user.id} style={{display: "flex", alignItems: "flex-start"}}>
+                            <Box style={{maxWidth: "12%"}}>
+                                <NavLink to={`/profile/${user.id}`} style={{display: "flex", flexDirection: "column"}}>
+                                    <img src={user.photos.small || userPhoto} style={{backgroundSize: "contain"}}/>
+                                </NavLink>
+                            </Box>
+                            <Box>
+                                <Typography style={{margin: 10}}>{user.name}</Typography>
+                                {user.status
+                                    ? <Typography style={{margin: 10}}>{user.status}</Typography>
+                                    : <Typography style={{margin: 10}}>no status</Typography>
+                                }
+                                {user.followed
+                                    ? <Button onClick={() => unfollow(user.id)}>unfollow</Button>
+                                    : <Button onClick={() => follow(user.id)}>follow</Button>
+                                }
+                            </Box>
                         </Card>
                     ))}
 

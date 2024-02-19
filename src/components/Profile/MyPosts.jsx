@@ -49,7 +49,6 @@ const MyPosts = ({isItAuthUserAccount}) => {
                         </Button>
                     </Box>
                 </>
-
                 :
                 null
             }
