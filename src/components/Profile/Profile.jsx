@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo"
 import Preloader from "../Preloader"
 import {Box} from "@mui/system"
@@ -9,7 +8,7 @@ const Profile = ({profile, authUserId}) => {
     return (
         profile
             ?
-            <Box className={styles.Profile}>
+            <Box>
                 {authUserId === profile.userId
                 ?
                     <>

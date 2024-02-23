@@ -1,6 +1,5 @@
 import React, {useEffect} from "react"
 import Profile from "./Profile"
-import styles from "./ProfileContainer.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { setUserProfile } from "../../store/reducers/profileReducer"
 import {useParams} from "react-router-dom"
@@ -20,7 +19,7 @@ const ProfileContainer = (props) => {
     }, [userId])
 
     return (
-        <div className={styles.ProfileContainer}>
+        <div>
             <Profile profile={profile} authUserId={authUserId}/>
         </div>
     )
