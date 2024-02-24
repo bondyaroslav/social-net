@@ -1,10 +1,10 @@
 import {
     followUserAC,
     unfollowUserAC,
-    setUsers,
-    setCurrentPage,
-    setUsersTotalCount,
-    setToggleFetching,
+    setUsersAC,
+    setCurrentPageAC,
+    setUsersTotalCountAC,
+    setIsFetchingAC,
 } from "../../store/reducers/usersReducer"
 import {connect} from "react-redux"
 import Users from "./Users"
@@ -15,15 +15,15 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        toggleIsFetching: state.usersPage.toggleIsFetching,
+        isFetching: state.usersPage.isFetching,
     }
 }
 
 export default connect(mapStateToProps, {
     followUserAC,
     unfollowUserAC,
-    setUsers,
-    setCurrentPage,
-    setUsersTotalCount,
-    setToggleFetching,
+    setUsersAC,
+    setCurrentPageAC,
+    setUsersTotalCountAC,
+    setIsFetchingAC,
 })(Users)

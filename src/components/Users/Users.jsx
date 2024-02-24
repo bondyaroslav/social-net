@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useEffect} from "react"
 import userPhoto from "../../assets/images/userPhoto.jpg"
 import {NavLink} from "react-router-dom"
 import Preloader from "../Preloader"
@@ -7,12 +7,25 @@ import axios from "axios"
 import {Box, Container} from "@mui/system"
 import {Button, Card, Pagination, Typography} from "@mui/material"
 
-const Users = ({pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
+const Users = (
+    {
+        users,
+        pageSize,
+        totalUsersCount,
+        currentPage,
+        isFetching,
+        followUserAC,
+        unfollowUserAC,
+        setUsersAC,
+        setCurrentPageAC,
+        setIsFetchingAC
+    }) => {
 
     const dispatch = useDispatch()
-    const [users, setUsers] = useState([])
-    const [isFetching, setIsFetching] = useState(true)
-    const [currentPage, setCurrentPage] = useState(1)
+    // const [users, setUsers] = useState([])
+    // const users = useSelector( state => state.usersPage.users )
+    // const [isFetching, setIsFetching] = useState(true)
+    // const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
         fetchUsers(currentPage, pageSize)
@@ -21,8 +34,9 @@ const Users = ({pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
     const fetchUsers = (page, pageSize) => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${pageSize}`, {withCredentials: true})
             .then((response) => {
-                setUsers(response.data.items)
-                setIsFetching(false)
+                // setUsers(response.data.items)
+                dispatch(setUsersAC(response.data.items))
+                dispatch(setIsFetchingAC(false))
             })
     }
 
@@ -30,7 +44,7 @@ const Users = ({pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
         axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, null, {withCredentials: true})
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    setUsers(users.map(user => user.id === userId ? { ...user, followed: true } : user))
+                    // setUsers(users.map(user => user.id === userId ? { ...user, followed: true } : user))
                     dispatch(followUserAC(userId))
                 }
             })
@@ -40,14 +54,14 @@ const Users = ({pageSize, totalUsersCount, followUserAC, unfollowUserAC}) => {
         axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {withCredentials: true})
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    setUsers(users.map(user => user.id === userId ? { ...user, followed: false } : user))
+                    // setUsers(users.map(user => user.id === userId ? { ...user, followed: false } : user))
                     dispatch(unfollowUserAC(userId))
                 }
             })
     }
 
     const onChangePage = (event, page) => {
-        setCurrentPage(page)
+        setCurrentPageAC(page)
     }
 
     return (
