@@ -2,10 +2,12 @@ import React, {useState} from 'react'
 import Post from "./Post"
 import {Button, TextField, Typography} from "@mui/material"
 import {Box} from "@mui/system"
+import {useDispatch, useSelector} from "react-redux"
+import {addPostAC} from "../../store/reducers/profileReducer"
 
 const MyPosts = ({isItAuthUserAccount}) => {
-
-    const [posts, setPosts] = useState([])
+    const dispatch = useDispatch()
+    const posts = useSelector(state => state.profilePage.posts)
     const [postName, setPostName] = useState("")
 
     const addPost = () => {
@@ -21,7 +23,7 @@ const MyPosts = ({isItAuthUserAccount}) => {
         const newPost = {id: id, name: postName, date: formattedDate}
         if (postName === "") {
             return 0
-        } else setPosts([...posts, newPost])
+        } else dispatch(addPostAC(newPost))
         setPostName("")
     }
 
@@ -57,14 +59,15 @@ const MyPosts = ({isItAuthUserAccount}) => {
                 null
             }
             <Box style={{display: "flex", flexDirection: "column-reverse"}}>
-                {posts.map((p) => (
+                {posts ?
+                    posts.map((p) => (
                     <Post key={p.id} id={p.id} name={p.name} date={p.date}></Post>
-                ))}
+                ))
+                : null
+                }
             </Box>
         </Box>
     )
 }
 
 export default MyPosts
-
-
