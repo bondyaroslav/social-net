@@ -40,6 +40,10 @@ const MyPosts = ({isItAuthUserAccount}) => {
                             style={{width: 300}}
                             value={postName}
                             onChange={(event) => {onInputName(event.target.value)}}
+                            onKeyUp={(event) => {
+                                if (event.key === "Enter") {
+                                    addPost()
+                                }}}
                         />
                         <Button
                             style={{marginLeft: 5}}
