@@ -34,7 +34,7 @@ export const follow = (userId) => {
 
 export const unfollow = (userId) => {
     return (dispatch) => {
-        instance.post(`follow/${userId}`)
+        instance.delete(`follow/${userId}`)
             .then(() => {
                 dispatch(unfollowUserAC(userId))
             })
