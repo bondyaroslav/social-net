@@ -1,32 +1,48 @@
 import axios from "axios"
-import {useDispatch} from "react-redux"
+import {
+    followUserAC,
+    setCurrentPageAC,
+    setIsFetchingAC,
+    setUsersAC,
+    unfollowUserAC
+} from "../store/reducers/usersReducer"
 
 const instance = axios.create({
     withCredentials: true,
     baseURL: "https://social-network.samuraijs.com/api/1.0/"
 })
 
-const dispatch = useDispatch
-
-const getUsers = (page, pageSize) => {
+export const getUsers = (page, pageSize) => {
     return (dispatch) => {
+        // dispatch(setIsFetchingAC(true))
         instance.get(`users?page=${page}&count=${pageSize}`)
-            .then( response => {
-                dispatch()
+            .then((response) => {
+                dispatch(setUsersAC(response.data.items))
+                // dispatch(setIsFetchingAC(false))
             })
     }
 }
 
-const follow = (userId) => {
-    instance.post(`follow/${userId}`)
-        .then( response => {
-            dispatch()
-        })
+export const follow = (userId) => {
+    return (dispatch) => {
+        instance.post(`follow/${userId}`)
+            .then(() => {
+                dispatch(followUserAC(userId))
+            })
+    }
 }
 
-const unfollow = (userId) => {
-    instance.post(`follow/${userId}`)
-        .then( response => {
-            dispatch()
-        })
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        instance.post(`follow/${userId}`)
+            .then(() => {
+                dispatch(unfollowUserAC(userId))
+            })
+    }
+}
+
+export const setCurrentPage = (page) => {
+    return (dispatch) => {
+        dispatch(setCurrentPageAC(page))
+    }
 }
