@@ -71,10 +71,10 @@ const Users = (
                 :
                 <Box>
                     {users.map((user) => (
-                        <Card key={user.id} style={{display: "flex", alignItems: "flex-start"}}>
-                            <Box style={{maxWidth: "12%"}}>
+                        <Card key={user.id} style={{display: "flex", alignItems: "flex-start", margin: 10}}>
+                            <Box style={{maxWidth: 120, height: 120}}>
                                 <NavLink to={`/profile/${user.id}`} style={{display: "flex", flexDirection: "column"}}>
-                                    <img src={user.photos.small || userPhoto} style={{backgroundSize: "contain"}}/>
+                                    <img src={user.photos.small || userPhoto} style={{width: 120}}/>
                                 </NavLink>
                             </Box>
                             <Box>
