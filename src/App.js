@@ -11,9 +11,8 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer"
 import UsersContainer from "./components/Users/UsersContainer"
 import NotFoundPage from "./components/NotFoundPage"
 import AuthPage from "./components/AuthPage"
-import axios from "axios"
 import {useDispatch, useSelector} from "react-redux"
-import {setIsAuthAC, setUserEmailAC, setUserIdAC, setUserLoginAC} from "./store/reducers/authReducer"
+import {authMe} from "./api/authApi"
 
 const App = ({store}) => {
 
@@ -22,18 +21,7 @@ const App = ({store}) => {
     const userId = useSelector( state => state.auth.id )
 
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
-            .then( response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setIsAuthAC(true))
-                    const email = response.data.data.email
-                    const id = response.data.data.id
-                    const login = response.data.data.login
-                    dispatch(setUserEmailAC(email))
-                    dispatch(setUserIdAC(id))
-                    dispatch(setUserLoginAC(login))
-                }
-            })
+        dispatch(authMe())
     }, [dispatch])
 
     if (authStatus === true) {
