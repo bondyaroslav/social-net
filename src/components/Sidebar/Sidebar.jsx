@@ -32,12 +32,6 @@ const Sidebar = ({userId}) => {
                         </ListItemIcon>
                         <ListItemText primary="News" />
                     </ListItem>
-                    <ListItem button component={Link} to="/music">
-                        <ListItemIcon>
-                            <MusicNote />
-                        </ListItemIcon>
-                        <ListItemText primary="Music" />
-                    </ListItem>
                 </List>
                 <Divider />
                 <List>

@@ -5,7 +5,6 @@ import Header from "./components/Header/Header"
 import Sidebar from "./components/Sidebar/Sidebar"
 import ProfileContainer from "./components/Profile/ProfileContainer"
 import News from "./components/News/News"
-import Music from "./components/Music/Music"
 import Settings from "./components/Settings/Settings"
 import DialogsContainer from "./components/Dialogs/DialogsContainer"
 import UsersContainer from "./components/Users/UsersContainer"
@@ -36,7 +35,6 @@ const App = ({store}) => {
                         <Route path="/dialogs/*" element={ <DialogsContainer store={store} />}/>
                         <Route path="/users" element={ <UsersContainer />}/>
                         <Route path="/news" element={<News />}/>
-                        <Route path="/music" element={<Music />}/>
                         <Route path="/settings" element={<Settings />}/>
                         <Route path="*" element={<NotFoundPage />}/>
                     </Routes>
