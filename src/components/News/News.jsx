@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import {Card, CardContent, CardMedia, Typography} from "@mui/material"
 import {Link} from "react-router-dom"
 import Preloader from "../Preloader"
+import {Container} from "@mui/system"
 
 const News = () => {
 
@@ -24,11 +25,9 @@ const News = () => {
         getNews()
     }, [])
 
-    console.log(news)
-
     if (news.length !== 0) {
         return (
-            <div style={{marginTop: 30}}>
+            <Container style={{marginTop: 30}}>
                 {news.map(el => (
                     <Card style={{
                         marginBottom: '20px',
@@ -57,7 +56,7 @@ const News = () => {
                         </CardContent>
                     </Card>
                 ))}
-            </div>
+            </Container>
         )
     } else return <Preloader/>
 }

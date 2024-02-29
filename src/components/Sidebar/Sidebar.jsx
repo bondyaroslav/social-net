@@ -14,7 +14,7 @@ const Sidebar = ({userId}) => {
                         </ListItemIcon>
                         <ListItemText primary="Profile" />
                     </ListItem>
-                    <ListItem button component={Link} to="/dialogs">
+                    <ListItem button component={Link} to="/messages">
                         <ListItemIcon>
                             <Message />
                         </ListItemIcon>

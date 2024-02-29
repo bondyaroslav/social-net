@@ -20,6 +20,7 @@ const MyPosts = ({isItAuthUserAccount}) => {
             hour: 'numeric',
             minute: 'numeric',
         }).format(date)
+
         const newPost = {id: id, name: postName, date: formattedDate}
         if (postName === "") {
             return 0
@@ -54,18 +55,18 @@ const MyPosts = ({isItAuthUserAccount}) => {
                             Add post
                         </Button>
                     </Box>
+                    <Box style={{display: "flex", flexDirection: "column-reverse"}}>
+                        {posts ?
+                            posts.map((p) => (
+                                <Post key={p.id} id={p.id} name={p.name} date={p.date}></Post>
+                            ))
+                            : null
+                        }
+                    </Box>
                 </>
                 :
                 null
             }
-            <Box style={{display: "flex", flexDirection: "column-reverse"}}>
-                {posts ?
-                    posts.map((p) => (
-                    <Post key={p.id} id={p.id} name={p.name} date={p.date}></Post>
-                ))
-                : null
-                }
-            </Box>
         </Box>
     )
 }
