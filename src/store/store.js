@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from "redux"
 import profileReducer from "./reducers/profileReducer"
-import dialogsReducer from "./reducers/dialogsReducer"
+import messagesReducer from "./reducers/messagesReducer"
 import usersReducer from "./reducers/usersReducer"
 import authReducer from "./reducers/authReducer"
 import {composeWithDevTools} from "redux-devtools-extension"
@@ -8,7 +8,7 @@ import thunk from "redux-thunk"
 
 let reducers = combineReducers({
     profilePage: profileReducer,
-    dialogsPage: dialogsReducer,
+    messagesPage: messagesReducer,
     usersPage: usersReducer,
     auth: authReducer
 })

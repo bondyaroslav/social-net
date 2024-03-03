@@ -10,7 +10,7 @@ const ProfileContainer = (props) => {
     const profile = useSelector(state => state.profilePage.profile)
     const authUserId = useSelector(state => state.auth.id)
     let {userId} = useParams()
-
+    console.log(userId)
     useEffect(() => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${props.userId || userId}`)
             .then((response) => {

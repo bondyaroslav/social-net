@@ -44,10 +44,12 @@ const ProfileInfo = ({profile, isItAuthUserAccount}) => {
                             : <Typography>not looking for a job</Typography>
                         }
                     </Box>
-                    {isItAuthUserAccount
-                        ? null
-                        : <NavLink to={`/messages/${profile.userId}`}><Button>send message</Button></NavLink>
-                    }
+                    <Box>
+                        {isItAuthUserAccount
+                            ? null
+                            : <NavLink to={`/messages/${profile.userId}`}><Button>send message</Button></NavLink>
+                        }
+                    </Box>
                 </Box>
                 <Box style={{display: "flex", alignItems: "center", marginLeft: 50}}>
                     {isItAuthUserAccount

@@ -32,7 +32,8 @@ const App = ({store}) => {
                     <Routes>
                         <Route path="/" element={ <ProfileContainer store={store} userId={userId} />}/>
                         <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>
-                        <Route path="/messages/*" element={ <Messages store={store} />}/>
+                        <Route path="/messages" element={ <Messages store={store} />}/>
+                        <Route path="/messages/:userId" element={ <Messages store={store} />}/>
                         <Route path="/users" element={ <UsersContainer />}/>
                         <Route path="/news" element={<News />}/>
                         <Route path="/settings" element={<Settings />}/>
