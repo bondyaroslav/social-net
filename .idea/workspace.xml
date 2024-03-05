@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="add backend" />
+    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="add backend">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/Messages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Users/Users.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Users/Users.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/messagesReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/messagesReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/usersReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/usersReducer.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,6 +70,8 @@
       <updated>1709477457112</updated>
       <workItem from="1709477462981" duration="5998000" />
       <workItem from="1709537752529" duration="288000" />
+      <workItem from="1709630675736" duration="1019000" />
+      <workItem from="1709645483878" duration="13529000" />
     </task>
     <task id="LOCAL-00001" summary="add backend">
       <option name="closed" value="true" />

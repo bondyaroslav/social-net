@@ -12,7 +12,7 @@ import NotFoundPage from "./components/NotFoundPage"
 import AuthPage from "./components/AuthPage"
 import {useDispatch, useSelector} from "react-redux"
 import {authMe} from "./api/authApi"
-import * as socketIO from "socket.io-client"
+import ChatPage from "./components/Messages/ChatPage"
 
 const App = ({store}) => {
 
@@ -33,8 +33,8 @@ const App = ({store}) => {
                     <Routes>
                         <Route path="/" element={ <ProfileContainer store={store} userId={userId} />}/>
                         <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>
-                        <Route path="/messages" element={ <Messages store={store} />}/>
-                        <Route path="/messages/:userId" element={ <Messages store={store} />}/>
+                        <Route path="/messages" element={ <Messages />}/>
+                        <Route path="/messages/:userId" element={ <ChatPage />}/>
                         <Route path="/users" element={ <UsersContainer />}/>
                         <Route path="/news" element={<News />}/>
                         <Route path="/settings" element={<Settings />}/>

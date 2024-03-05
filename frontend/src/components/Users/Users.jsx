@@ -28,7 +28,7 @@ const Users = (
     }
 
     return (
-        <Container>
+        <Box>
             {isFetching ?
                 <Preloader/>
                 :
@@ -68,7 +68,7 @@ const Users = (
                     />
                 </Box>
             }
-        </Container>
+        </Box>
     )
 }
 
