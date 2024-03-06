@@ -1,9 +1,11 @@
 import React, {useEffect} from "react"
 import userPhoto from "../../assets/images/userPhoto.jpg"
-import {Link, NavLink} from "react-router-dom"
+import {NavLink} from "react-router-dom"
 import Preloader from "../Preloader"
-import {Box, Container} from "@mui/system"
+import {Box} from "@mui/system"
 import {Button, Card, Pagination, Typography} from "@mui/material"
+import {useDispatch} from "react-redux"
+import {createNewChatAC} from "../../store/reducers/messagesReducer"
 
 const Users = (
     {
@@ -18,13 +20,23 @@ const Users = (
         unfollow,
     }) => {
 
+    const dispatch = useDispatch()
+
     useEffect(() => {
         getUsers(currentPage, pageSize)
     }, [currentPage])
 
     const onChangePage = (event, page) => {
-        console.log(currentPage)
         setCurrentPage(page)
+    }
+
+    const onSendMessageClick = (userId, userName) => {
+        const newChat = {
+                id: userId,
+                userName: userName,
+                messages: []
+            }
+        dispatch(createNewChatAC(newChat))
     }
 
     return (
@@ -34,13 +46,13 @@ const Users = (
                 :
                 <Box>
                     {users.map((user) => (
-                        <Card key={user.id} style={{display: "flex", justifyContent: "space-between", marginTop: 10}}>
+                        <Card key={user.id} style={{display: "flex", justifyContent: "space-between", marginTop: 10, marginBottom: 10}}>
                             <Box style={{display: "flex"}}>
                                 <NavLink to={`/profile/${user.id}`} style={{display: "flex", flexDirection: "column", maxWidth: 120, height: 120}}>
                                     <img src={user.photos.small || userPhoto} style={{width: 120}}/>
                                 </NavLink>
-                                <Box style={{display: "flex", flexDirection: "column"}}>
-                                    <Typography>{user.name}</Typography>
+                                <Box style={{display: "flex", flexDirection: "column", marginLeft: 20}}>
+                                    <Typography style={{fontSize: 22}}>{user.name}</Typography>
                                     <Box>
                                         {user.status
                                             ? <Typography>{user.status}</Typography>
@@ -48,7 +60,7 @@ const Users = (
                                         }
                                     </Box>
                                     <NavLink to={`/messages/${user.id}`} style={{display: "flex", flexDirection: "column", textDecoration: "none"}}>
-                                        <Button style={{width: 150, marginTop: 15}}>send message</Button>
+                                        <Button style={{width: 150, marginTop: 15}} onClick={() => {onSendMessageClick(user.id, user.name)}}>send message</Button>
                                     </NavLink>
                                 </Box>
                             </Box>

@@ -31,7 +31,7 @@ const ProfileInfo = ({profile, isItAuthUserAccount}) => {
                     : <Box style={{width: "100%", height: 150, backgroundColor: "whitesmoke"}}></Box>
                 }
             </Box>
-            <Box style={{display: "flex", flexDirection: "row"}}>
+            <Box style={{display: "flex", flexDirection: "row", marginTop: 10}}>
                 {profile.photos.small
                     ? <img src={profile.photos.small}/>
                     : <img src={userPhoto} style={{width: "10%", height: "10%"}}/>
