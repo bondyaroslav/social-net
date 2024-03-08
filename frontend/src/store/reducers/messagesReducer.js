@@ -20,6 +20,7 @@ let initialState = {
 }
 
 const CREATE_NEW_CHAT = "CREATE_NEW_CHAT"
+const GET_CHAT = "GET_CHAT"
 const SEND_MESSAGE = "SEND_MESSAGE"
 const DELETE_MESSAGE = "DELETE_MESSAGE"
 const DELETE_CHAT = "DELETE_CHAT"
@@ -28,19 +29,15 @@ const DELETE_CHAT = "DELETE_CHAT"
 const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_NEW_CHAT:
-            return {
-                ...state,
-                chats: [...state.chats, action.newChat]
+            const isChatExist = state.chats.some(chat => chat.id === action.newChat.id)
+            if (isChatExist) {
+                return state
             }
+            const filteredChats = state.chats.filter(chat => chat.id !== action.newChat.id)
+            return {...state, chats: [...filteredChats, action.newChat]}
 
-        // case SEND_MESSAGE:
-        //     const currentChat = state.chats.filter((chat) => chat.id === action.chatId)
-        //     const updatedChats = state.chats.map((chat) => {
-        //         if (currentChat.id === chat.id) return currentChat})
-        //     return {
-        //         ...state,
-        //         chats: updatedChats
-        //     }
+            case GET_CHAT:
+            return state.chats.filter(chat => chat.id === action.id)
 
         default:
             return state
@@ -48,6 +45,8 @@ const messagesReducer = (state = initialState, action) => {
 }
 
 export const createNewChatAC = (newChat) => ({type: CREATE_NEW_CHAT, newChat})
-// export const sendMessageAC = (chatId, message) => ({type: SEND_MESSAGE, chatId, message})
+
+export const getChatAC = (id) => ({type: GET_CHAT, id})
+
 
 export default messagesReducer
