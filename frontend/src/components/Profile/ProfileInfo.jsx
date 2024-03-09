@@ -6,6 +6,7 @@ import {NavLink} from "react-router-dom"
 import {follow, unfollow} from "../../api/usersApi"
 import axios from "axios"
 import {useDispatch} from "react-redux"
+import {createNewChatAC} from "../../store/reducers/messagesReducer"
 
 const ProfileInfo = ({profile, isItAuthUserAccount}) => {
 
@@ -22,6 +23,15 @@ const ProfileInfo = ({profile, isItAuthUserAccount}) => {
     useEffect(() => {
         getIsUserFollow()
     }, [follow(), unfollow()])
+
+    const onSendMessageClick = (userId, userName) => {
+        const newChat = {
+            id: userId,
+            userName: userName,
+            messages: []
+        }
+        dispatch(createNewChatAC(newChat))
+    }
 
     return (
         <Box>
@@ -47,7 +57,12 @@ const ProfileInfo = ({profile, isItAuthUserAccount}) => {
                     <Box>
                         {isItAuthUserAccount
                             ? null
-                            : <NavLink to={`/messages/${profile.userId}`}><Button>send message</Button></NavLink>
+                            :
+                            <NavLink to={`/messages/${profile.userId}`} onClick={() => {
+                                onSendMessageClick(profile.userId, profile.fullName)
+                            }}>
+                                <Button>send message</Button>
+                            </NavLink>
                         }
                     </Box>
                 </Box>
