@@ -2,7 +2,6 @@ import axios from "axios"
 import {
     followUserAC,
     setCurrentPageAC,
-    setIsFetchingAC,
     setUsersAC,
     unfollowUserAC
 } from "../store/reducers/usersReducer"
@@ -14,11 +13,9 @@ const instance = axios.create({
 
 export const getUsers = (page, pageSize) => {
     return (dispatch) => {
-        // dispatch(setIsFetchingAC(true))
         instance.get(`users?page=${page}&count=${pageSize}`)
             .then((response) => {
                 dispatch(setUsersAC(response.data.items))
-                // dispatch(setIsFetchingAC(false))
             })
     }
 }

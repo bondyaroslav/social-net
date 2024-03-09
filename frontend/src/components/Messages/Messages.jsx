@@ -1,19 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Chat from "./Chat"
-import {Box, Container} from "@mui/system"
-import {useDispatch, useSelector} from "react-redux"
+import {Box} from "@mui/system"
+import {useSelector} from "react-redux"
+import ChatPage from "./ChatPage"
 
 const Messages = () => {
-    const dispatch = useDispatch()
     const chats = useSelector(state => state.messagesPage.chats)
 
-    const mappedChats = chats.map((chat) => (
-        <Chat key={chat.id} id={chat.id} messages={chat.messages} userName={chat.userName}/>
-    ))
-
     return (
-        <Box>
-            {mappedChats}
+        <Box style={{display: "flex"}}>
+            <Box style={{width: "40%"}}>
+                <>
+                    {chats.map((chat) => (
+                        <Chat key={chat.id}
+                              id={chat.id}
+                              messages={chat.messages}
+                              userName={chat.userName}
+                        />
+                    ))}
+                </>
+            </Box>
+
+            <Box style={{width: "60%"}}>
+                <ChatPage/>
+            </Box>
         </Box>
     )
 }

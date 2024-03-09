@@ -6,7 +6,7 @@ let initialState = {
             userName: "Petr",
             messages: [
                 {id: 1, author: "Petr", text: "hello"},
-                {id: 2, author: "me", text: "how are you?"},
+                {id: 2, author: "me", text: "howsadfsd are you?"},
             ]
         },
         {
@@ -14,7 +14,7 @@ let initialState = {
             userName: "Vlad",
             messages: [
                 {id: 3, author: "me", text: "hello"},
-                {id: 4, author: "Vlad", text: "how are you?"},
+                {id: 4, author: "Vlad", text: "how are youasdfasd?"},
             ]
         },
     ]

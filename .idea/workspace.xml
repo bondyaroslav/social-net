@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="add backend">
+    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="feat(messagesReducer): set current chat">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/usersApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/usersApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/Chat.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/ChatPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/ChatPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/Messages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Users/Users.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Users/Users.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile/ProfileContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile/ProfileContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar/Sidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/messagesReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/messagesReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/usersReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/usersReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +74,13 @@
       <workItem from="1709477462981" duration="5998000" />
       <workItem from="1709537752529" duration="288000" />
       <workItem from="1709630675736" duration="1019000" />
-      <workItem from="1709645483878" duration="13529000" />
+      <workItem from="1709645483878" duration="13592000" />
+      <workItem from="1709670570777" duration="1887000" />
+      <workItem from="1709716286548" duration="7799000" />
+      <workItem from="1709738740119" duration="1682000" />
+      <workItem from="1709809932614" duration="10198000" />
+      <workItem from="1709914381634" duration="10571000" />
+      <workItem from="1709988641260" duration="6941000" />
     </task>
     <task id="LOCAL-00001" summary="add backend">
       <option name="closed" value="true" />
@@ -81,14 +90,61 @@
       <option name="project" value="LOCAL" />
       <updated>1709538015243</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat(Messages): add messages">
+      <option name="closed" value="true" />
+      <created>1709669831698</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709669831698</updated>
+    </task>
+    <task id="LOCAL-00003" summary="style(ProfileInfo, Users)">
+      <option name="closed" value="true" />
+      <created>1709721892862</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709721892862</updated>
+    </task>
+    <task id="LOCAL-00004" summary="bugfix(messagesReducer): create new chat bug">
+      <option name="closed" value="true" />
+      <created>1709916808039</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709916808039</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat(messagesReducer): set current chat">
+      <option name="closed" value="true" />
+      <created>1709993709819</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1709993709819</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add backend" />
-    <option name="LAST_COMMIT_MESSAGE" value="add backend" />
+    <MESSAGE value="feat(Messages): add messages" />
+    <MESSAGE value="style(ProfileInfo, Users)" />
+    <MESSAGE value="bugfix(messagesReducer): create new chat bug" />
+    <MESSAGE value="feat(messagesReducer): set current chat" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(messagesReducer): set current chat" />
   </component>
 </project>

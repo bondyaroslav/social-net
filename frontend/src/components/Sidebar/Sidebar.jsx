@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider } from '@mui/material'
-import { AccountCircle, Message, People, LibraryBooks, MusicNote, Settings } from '@mui/icons-material'
+import { AccountCircle, Message, People, LibraryBooks, Settings } from '@mui/icons-material'
 
 const Sidebar = ({userId}) => {
     return (
