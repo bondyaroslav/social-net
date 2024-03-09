@@ -1,4 +1,5 @@
 let initialState = {
+    currentChat: null,
     chats: [
         {
             id: 1,
@@ -20,7 +21,7 @@ let initialState = {
 }
 
 const CREATE_NEW_CHAT = "CREATE_NEW_CHAT"
-const GET_CHAT = "GET_CHAT"
+const SET_CURRENT_CHAT = "SET_CURRENT_CHAT"
 const SEND_MESSAGE = "SEND_MESSAGE"
 const DELETE_MESSAGE = "DELETE_MESSAGE"
 const DELETE_CHAT = "DELETE_CHAT"
@@ -36,9 +37,12 @@ const messagesReducer = (state = initialState, action) => {
             const filteredChats = state.chats.filter(chat => chat.id !== action.newChat.id)
             return {...state, chats: [...filteredChats, action.newChat]}
 
-            case GET_CHAT:
-            return state.chats.filter(chat => chat.id === action.id)
-
+        case SET_CURRENT_CHAT:
+            const currentChat = state.chats.filter(chat => chat.id === action.id)
+            return {
+                ...state,
+                currentChat: currentChat[0]
+            }
         default:
             return state
     }
@@ -46,7 +50,7 @@ const messagesReducer = (state = initialState, action) => {
 
 export const createNewChatAC = (newChat) => ({type: CREATE_NEW_CHAT, newChat})
 
-export const getChatAC = (id) => ({type: GET_CHAT, id})
+export const setCurrentChatAC = (id) => ({type: SET_CURRENT_CHAT, id})
 
 
 export default messagesReducer
