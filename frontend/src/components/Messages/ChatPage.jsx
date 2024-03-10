@@ -1,10 +1,38 @@
 import React, {useEffect, useState} from "react"
-import {useSelector} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {Button, Card, TextField} from "@mui/material"
 import {Box} from "@mui/system"
+import {sendMessageAC} from "../../store/reducers/messagesReducer"
 
-const ChatPage = () => {
-    const currentChat = useSelector(state => state.messagesPage.currentChat)
+const ChatPage = ({store}) => {
+    const dispatch = useDispatch()
+    let currentChat = useSelector(state => state.messagesPage.currentChat)
+
+    const [messages, setMessages] = useState()
+
+    useEffect(() => {
+        // Оновлюємо messages при зміні currentChat
+        setMessages(currentChat?.messages || []);
+    }, [currentChat]);
+
+    const [messageText, setMessageText] = useState("")
+    const onInputMessage = (text) => {
+        setMessageText(text)
+    }
+
+    const sendMessage = (userId, userName, messageText) => {
+        if (currentChat) {
+            const newMessage = {
+                id: new Date().getTime(),
+                author: userName,
+                text: messageText
+            }
+            dispatch(sendMessageAC(userId, newMessage))
+            setMessageText("")
+        }
+    }
+
+    console.log(messages)
 
     return (
         <Box style={{
@@ -34,8 +62,21 @@ const ChatPage = () => {
             </Box>
 
             <Box style={{display: "flex", flexDirection: "row"}}>
-                <TextField style={{width: "70%"}}/>
-                <Button style={{width: "30%"}}>send message</Button>
+                <TextField
+                    style={{width: "70%"}}
+                    value={messageText}
+                    onChange={(event) => {onInputMessage(event.target.value)}}
+                    onKeyUp={(event) => {
+                        if (event.key === "Enter") {
+                            sendMessage(currentChat.id, currentChat.userName, messageText)
+                        }}}
+                />
+                <Button
+                    style={{width: "30%"}}
+                    onClick={() => {sendMessage(currentChat.id, currentChat.userName, messageText)}}
+                >
+                    send message
+                </Button>
             </Box>
         </Box>
     )

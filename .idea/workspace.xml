@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="feat(messagesReducer): set current chat">
+    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="feat(Profile): add link to messages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/usersApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/usersApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/Chat.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/ChatPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/ChatPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/Messages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile/ProfileContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile/ProfileContainer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/News/News.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/News/News.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/messagesReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/messagesReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +75,9 @@
       <workItem from="1709738740119" duration="1682000" />
       <workItem from="1709809932614" duration="10198000" />
       <workItem from="1709914381634" duration="10571000" />
-      <workItem from="1709988641260" duration="6941000" />
+      <workItem from="1709988641260" duration="13333000" />
+      <workItem from="1710064297042" duration="8870000" />
+      <workItem from="1710085400331" duration="1335000" />
     </task>
     <task id="LOCAL-00001" summary="add backend">
       <option name="closed" value="true" />
@@ -122,7 +119,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709993709819</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat(Messages): add chats">
+      <option name="closed" value="true" />
+      <created>1709995844733</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1709995844733</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat(Profile): add link to messages">
+      <option name="closed" value="true" />
+      <created>1710000862922</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1710000862922</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +158,8 @@
     <MESSAGE value="style(ProfileInfo, Users)" />
     <MESSAGE value="bugfix(messagesReducer): create new chat bug" />
     <MESSAGE value="feat(messagesReducer): set current chat" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(messagesReducer): set current chat" />
+    <MESSAGE value="feat(Messages): add chats" />
+    <MESSAGE value="feat(Profile): add link to messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(Profile): add link to messages" />
   </component>
 </project>
