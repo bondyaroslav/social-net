@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="feat(Profile): add link to messages">
+    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="save">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/ChatPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/ChatPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/News/News.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/News/News.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/messagesReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/messagesReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +77,10 @@
       <workItem from="1709988641260" duration="13333000" />
       <workItem from="1710064297042" duration="8870000" />
       <workItem from="1710085400331" duration="1335000" />
+      <workItem from="1710104301321" duration="25000" />
+      <workItem from="1710159856070" duration="8000000" />
+      <workItem from="1710266862155" duration="2493000" />
+      <workItem from="1710433638156" duration="3388000" />
     </task>
     <task id="LOCAL-00001" summary="add backend">
       <option name="closed" value="true" />
@@ -135,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710000862922</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="save">
+      <option name="closed" value="true" />
+      <created>1710104318195</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1710104318195</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +171,7 @@
     <MESSAGE value="feat(messagesReducer): set current chat" />
     <MESSAGE value="feat(Messages): add chats" />
     <MESSAGE value="feat(Profile): add link to messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(Profile): add link to messages" />
+    <MESSAGE value="save" />
+    <option name="LAST_COMMIT_MESSAGE" value="save" />
   </component>
 </project>

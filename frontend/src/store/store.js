@@ -5,12 +5,14 @@ import usersReducer from "./reducers/usersReducer"
 import authReducer from "./reducers/authReducer"
 import {composeWithDevTools} from "redux-devtools-extension"
 import thunk from "redux-thunk"
+import newsReducer from "./reducers/newsReducer"
 
 let reducers = combineReducers({
     profilePage: profileReducer,
     messagesPage: messagesReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    newsPage: newsReducer,
+    auth: authReducer,
 })
 
 let store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
