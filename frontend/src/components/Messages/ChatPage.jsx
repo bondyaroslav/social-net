@@ -4,16 +4,11 @@ import {Button, Card, TextField} from "@mui/material"
 import {Box} from "@mui/system"
 import {sendMessageAC} from "../../store/reducers/messagesReducer"
 
-const ChatPage = ({store}) => {
+const ChatPage = () => {
     const dispatch = useDispatch()
-    let currentChat = useSelector(state => state.messagesPage.currentChat)
+    const currentChat = useSelector((state) => state.messagesPage.currentChat)
 
-    const [messages, setMessages] = useState()
-
-    useEffect(() => {
-        // Оновлюємо messages при зміні currentChat
-        setMessages(currentChat?.messages || []);
-    }, [currentChat]);
+    const [messages, setMessages] = useState([])
 
     const [messageText, setMessageText] = useState("")
     const onInputMessage = (text) => {
@@ -25,54 +20,60 @@ const ChatPage = ({store}) => {
             const newMessage = {
                 id: new Date().getTime(),
                 author: userName,
-                text: messageText
+                text: messageText,
             }
+            setMessages((prevMessages) => [...prevMessages, newMessage])
             dispatch(sendMessageAC(userId, newMessage))
             setMessageText("")
         }
     }
 
-    console.log(messages)
+    useEffect(() => {
+        setMessages(currentChat?.messages || [])
+    }, [currentChat])
 
     return (
-        <Box style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            height: 500,
-            backgroundColor: "whitesmoke"
-        }}>
+        <Box
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                height: 500,
+                backgroundColor: "whitesmoke",
+            }}
+        >
             <Box>
-                {currentChat
-                    ? <>
+                {currentChat ? (
+                    <>
                         <p>{currentChat.userName}</p>
-                        {currentChat.messages
-                            ? <>
-                                {currentChat.messages.map((message) => (
-                                    <Card key={message.id}>
-                                        {message.text}
-                                    </Card>
+                        {messages.length > 0 ? (
+                            <>
+                                {messages.map((message) => (
+                                    <Card key={message.id}>{message.text}</Card>
                                 ))}
                             </>
-                            : <p>no messages yet</p>
-                        }
+                        ) : (
+                            <p>no messages yet</p>
+                        )}
                     </>
-                    : <p>chat not selected</p>
-                }
+                ) : (
+                    <p>chat not selected</p>
+                )}
             </Box>
 
-            <Box style={{display: "flex", flexDirection: "row"}}>
+            <Box style={{ display: "flex", flexDirection: "row" }}>
                 <TextField
-                    style={{width: "70%"}}
+                    style={{ width: "70%" }}
                     value={messageText}
                     onChange={(event) => {onInputMessage(event.target.value)}}
                     onKeyUp={(event) => {
                         if (event.key === "Enter") {
                             sendMessage(currentChat.id, currentChat.userName, messageText)
-                        }}}
+                        }
+                    }}
                 />
                 <Button
-                    style={{width: "30%"}}
+                    style={{ width: "30%" }}
                     onClick={() => {sendMessage(currentChat.id, currentChat.userName, messageText)}}
                 >
                     send message
@@ -81,6 +82,5 @@ const ChatPage = ({store}) => {
         </Box>
     )
 }
-
 
 export default ChatPage
