@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="feat(News): add newsReducer, news by category, news by query">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/ChatPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/ChatPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile/MyPosts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile/MyPosts.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile/Post.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/profileReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/profileReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +82,8 @@
       <workItem from="1710159856070" duration="8000000" />
       <workItem from="1710266862155" duration="2493000" />
       <workItem from="1710433638156" duration="6459000" />
+      <workItem from="1711800299257" duration="5241000" />
+      <workItem from="1711814499793" duration="3032000" />
     </task>
     <task id="LOCAL-00001" summary="add backend">
       <option name="closed" value="true" />
@@ -168,6 +172,17 @@
         <option value="Default.Subject" />
         <option value="Space.CommitStatus" />
       </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">

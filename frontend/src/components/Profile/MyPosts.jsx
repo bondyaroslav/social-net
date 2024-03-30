@@ -8,7 +8,7 @@ import {addPostAC} from "../../store/reducers/profileReducer"
 const MyPosts = ({isItAuthUserAccount}) => {
     const dispatch = useDispatch()
     const posts = useSelector(state => state.profilePage.posts)
-    const [postName, setPostName] = useState("")
+    const [postText, setPostText] = useState("")
 
     const addPost = () => {
         const id = new Date().getTime()
@@ -21,15 +21,15 @@ const MyPosts = ({isItAuthUserAccount}) => {
             minute: 'numeric',
         }).format(date)
 
-        const newPost = {id: id, name: postName, date: formattedDate}
-        if (postName === "") {
+        const newPost = {id: id, text: postText, date: formattedDate}
+        if (postText === "") {
             return 0
         } else dispatch(addPostAC(newPost))
-        setPostName("")
+        setPostText("")
     }
 
-    const onInputName = (name) => {
-        setPostName(name)
+    const onInputName = (text) => {
+        setPostText(text)
     }
 
     return (
@@ -37,11 +37,11 @@ const MyPosts = ({isItAuthUserAccount}) => {
             {isItAuthUserAccount
                 ?
                 <>
-                    <Typography>My posts</Typography>
+                    <Typography style={{fontSize: 20, marginBottom: 10}}>My posts</Typography>
                     <Box style={{display: "flex"}}>
                         <TextField
                             style={{width: 300}}
-                            value={postName}
+                            value={postText}
                             onChange={(event) => {onInputName(event.target.value)}}
                             onKeyUp={(event) => {
                                 if (event.key === "Enter") {
@@ -58,7 +58,7 @@ const MyPosts = ({isItAuthUserAccount}) => {
                     <Box style={{display: "flex", flexDirection: "column-reverse"}}>
                         {posts ?
                             posts.map((p) => (
-                                <Post key={p.id} id={p.id} name={p.name} date={p.date}></Post>
+                                <Post key={p.id} id={p.id} text={p.text} date={p.date}></Post>
                             ))
                             : null
                         }
