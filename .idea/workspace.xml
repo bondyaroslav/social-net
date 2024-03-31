@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="feat(News): add newsReducer, news by category, news by query">
+    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="feat(Profile): delete and edit posts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile/MyPosts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile/MyPosts.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile/Post.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/profileReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/profileReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile/ProfileInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile/ProfileInfo.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +82,8 @@
       <workItem from="1710266862155" duration="2493000" />
       <workItem from="1710433638156" duration="6459000" />
       <workItem from="1711800299257" duration="5241000" />
-      <workItem from="1711814499793" duration="3032000" />
+      <workItem from="1711814499793" duration="6509000" />
+      <workItem from="1711909532341" duration="4774000" />
     </task>
     <task id="LOCAL-00001" summary="add backend">
       <option name="closed" value="true" />
@@ -157,7 +157,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710437292227</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feat(Profile): delete and edit posts">
+      <option name="closed" value="true" />
+      <created>1711819329382</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1711819329382</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +203,7 @@
     <MESSAGE value="feat(Profile): add link to messages" />
     <MESSAGE value="save" />
     <MESSAGE value="feat(News): add newsReducer, news by category, news by query" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(News): add newsReducer, news by category, news by query" />
+    <MESSAGE value="feat(Profile): delete and edit posts" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(Profile): delete and edit posts" />
   </component>
 </project>

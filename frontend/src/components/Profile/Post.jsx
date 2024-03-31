@@ -47,7 +47,7 @@ const Post = ({ id, text, date }) => {
                 <textarea
                     ref={textAreaRef}
                     style={{
-                        minHeight: 50,
+                        minHeight: 100,
                         margin: '10px 0',
                         maxWidth: "100%",
                         border: '1px solid #ccc',
@@ -60,15 +60,15 @@ const Post = ({ id, text, date }) => {
                     onChange={handleTextAreaChange}
                 />
             ) : (
-                <Typography style={{ overflowWrap: "break-word", marginBottom: 10 }}>{text}</Typography>
+                <Typography style={{overflowWrap: "break-word", marginBottom: 10}}>{text}</Typography>
             )}
-            <Box style={{ position: 'absolute', bottom: 10, right: 10 }}>
+            <Box style={{position: 'absolute', bottom: 10, right: 10}}>
                 <IconButton aria-label="delete" onClick={handleDelete}>
-                    <DeleteIcon />
+                    <DeleteIcon/>
                 </IconButton>
                 {isPostEditing ? (
                     <IconButton aria-label="confirm" onClick={confirmEditingPost}>
-                        <CheckIcon />
+                        <CheckIcon/>
                     </IconButton>
                 ) : (
                     <IconButton aria-label="edit" onClick={editPost}>
