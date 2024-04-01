@@ -64,12 +64,15 @@ const ProfileInfo = ({ profile, isItAuthUserAccount }) => {
             <Box style={{ display: "flex", flexDirection: "row", marginTop: 10 }}>
                 {profile.photos.small
                     ?
-                    <Fragment>
-                        <img src={profile.photos.small} style={{width: "15%", height: "15%"}}/>
-                        <input type="file" accept="image/*" onChange={handleFileChange}/>
-                    </Fragment>
+                    <Box style={{display: "flex", flexDirection: "column"}}>
+                        <img src={profile.photos.small} style={{width: 150, height: 150}}/>
+                        {isItAuthUserAccount
+                            ? <input type="file" accept="image/*" style={{width: 150}} onChange={handleFileChange}/>
+                            : null
+                        }
+                    </Box>
                     :
-                    <img src={userPhoto} style={{width: "15%", height: "15%"}}/>
+                    <img src={userPhoto} style={{width: 150, height: 150}}/>
             }
             <Box style={{ marginLeft: 20 }}>
                     <Typography style={{ fontSize: 30 }}>{profile.fullName}</Typography>
