@@ -5,16 +5,16 @@ let initialState = {
             id: 1,
             userName: "Petr",
             messages: [
-                {id: 1, author: "Petr", text: "chat 1"},
-                {id: 2, author: "me", text: "howsadfsd are you?"},
+                {date: 1712067331357, author: "Petr", text: "chat 1"},
+                {date: 1712067331358, author: "me", text: "howsadfsd are you?"},
             ]
         },
         {
             id: 2,
             userName: "Vlad",
             messages: [
-                {id: 3, author: "me", text: "hello"},
-                {id: 4, author: "Vlad", text: "chat 2"},
+                {date: 1712067331351, author: "me", text: "hello"},
+                {date: 1712067331355, author: "Vlad", text: "chat 2"},
             ]
         },
     ]
@@ -25,7 +25,6 @@ const SET_CURRENT_CHAT = "SET_CURRENT_CHAT"
 const SEND_MESSAGE = "SEND_MESSAGE"
 const DELETE_MESSAGE = "DELETE_MESSAGE"
 const DELETE_CHAT = "DELETE_CHAT"
-
 
 const messagesReducer = (state = initialState, action) => {
     switch (action.type) {

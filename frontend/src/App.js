@@ -6,7 +6,7 @@ import Sidebar from "./components/Sidebar/Sidebar"
 import ProfileContainer from "./components/Profile/ProfileContainer"
 import News from "./components/News/News"
 import Settings from "./components/Settings/Settings"
-import Messages from "./components/Messages/Messages"
+import MessagesPage from "./components/Messages/MessagesPage"
 import UsersContainer from "./components/Users/UsersContainer"
 import NotFoundPage from "./components/NotFoundPage"
 import AuthPage from "./components/AuthPage"
@@ -32,8 +32,8 @@ const App = ({store}) => {
                     <Routes>
                         <Route path="/" element={ <ProfileContainer store={store} userId={userId} />}/>
                         <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>
-                        <Route path="/messages" element={ <Messages />}/>
-                        <Route path="/messages/:userId" element={ <Messages />}/>
+                        <Route path="/messages" element={ <MessagesPage />}/>
+                        <Route path="/messages/:userId" element={ <MessagesPage />}/>
                         <Route path="/users" element={ <UsersContainer />}/>
                         <Route path="/news" element={<News />}/>
                         <Route path="/settings" element={<Settings />}/>

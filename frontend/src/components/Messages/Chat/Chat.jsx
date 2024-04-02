@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
-import {Button, Card, TextField} from "@mui/material"
+import {Button, Card, TextField, Typography} from "@mui/material"
 import {Box} from "@mui/system"
-import {sendMessageAC} from "../../store/reducers/messagesReducer"
+import {sendMessageAC} from "../../../store/reducers/messagesReducer"
+import style from "./Chat.module.scss"
+import Message from "./Message"
 
-const ChatPage = () => {
+const Chat = () => {
     const dispatch = useDispatch()
     const currentChat = useSelector((state) => state.messagesPage.currentChat)
-
     const [messages, setMessages] = useState([])
-
     const [messageText, setMessageText] = useState("")
+
     const onInputMessage = (text) => {
         setMessageText(text)
     }
@@ -18,7 +19,7 @@ const ChatPage = () => {
     const sendMessage = (userId, userName, messageText) => {
         if (currentChat) {
             const newMessage = {
-                id: new Date().getTime(),
+                date: new Date().getTime(),
                 author: userName,
                 text: messageText,
             }
@@ -33,31 +34,25 @@ const ChatPage = () => {
     }, [currentChat])
 
     return (
-        <Box
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                height: 500,
-                backgroundColor: "whitesmoke",
-            }}
-        >
-            <Box>
+        <Box className={style.ChatPage}>
+            <Box className={style.messages}>
                 {currentChat ? (
                     <>
-                        <p>{currentChat.userName}</p>
+                        <Box className={style.userName}>
+                            <Typography>{currentChat.userName}</Typography>
+                        </Box>
                         {messages.length > 0 ? (
                             <>
                                 {messages.map((message) => (
-                                    <Card key={message.id}>{message.text}</Card>
+                                    <Message key={message.date} date={message.date} text={message.text}/>
                                 ))}
                             </>
                         ) : (
-                            <p>no messages yet</p>
+                            <Typography className={style.noMessages}>no messages yet</Typography>
                         )}
                     </>
                 ) : (
-                    <p>chat not selected</p>
+                    <Typography className={style.unSelectedChat}>chat not selected</Typography>
                 )}
             </Box>
 
@@ -83,4 +78,4 @@ const ChatPage = () => {
     )
 }
 
-export default ChatPage
+export default Chat

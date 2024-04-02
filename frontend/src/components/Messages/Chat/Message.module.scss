@@ -1,0 +1,23 @@
+.message {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: fit-content;
+	max-width: 70%;
+	min-height: 30px;
+	margin: 5px;
+	word-break: break-all;
+
+
+	.messageText {
+		margin-left: 10px;
+	}
+
+	.messageDate {
+		width: 40px;
+		font-size: 12px;
+		margin-right: 5px;
+		margin-left: 5px;
+		word-break: keep-all;
+	}
+}

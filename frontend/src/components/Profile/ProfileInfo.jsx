@@ -23,7 +23,7 @@ const ProfileInfo = ({ profile, isItAuthUserAccount }) => {
 
     useEffect(() => {
         getIsUserFollow()
-    }, [profile.userId])
+    }, [profile.id, follow(), unfollow()])
 
     const onSendMessageClick = (userId, userName) => {
         const newChat = {
@@ -54,7 +54,7 @@ const ProfileInfo = ({ profile, isItAuthUserAccount }) => {
     }, [photo])
 
     return (
-        <Box>
+        <Fragment>
             <Box>
                 {profile.photos.large
                     ? <img style={{ width: "100%", height: 150, objectFit: "cover" }} src={profile.photos.large} />
@@ -106,7 +106,7 @@ const ProfileInfo = ({ profile, isItAuthUserAccount }) => {
                     }
                 </Box>
             </Box>
-        </Box>
+        </Fragment>
     )
 }
 export default ProfileInfo
