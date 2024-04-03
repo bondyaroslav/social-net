@@ -16,6 +16,13 @@ const Chat = () => {
         setMessageText(text)
     }
 
+    function isEmpty(str) {
+        if (str.trim() === "") {
+            return true
+        }
+        return false
+    }
+
     const sendMessage = (userId, userName, messageText) => {
         if (currentChat) {
             const newMessage = {
@@ -23,9 +30,13 @@ const Chat = () => {
                 author: userName,
                 text: messageText,
             }
-            setMessages((prevMessages) => [...prevMessages, newMessage])
-            dispatch(sendMessageAC(userId, newMessage))
-            setMessageText("")
+            if (isEmpty(newMessage.text)) {
+                return null
+            } else {
+                setMessages((prevMessages) => [...prevMessages, newMessage])
+                dispatch(sendMessageAC(userId, newMessage))
+                setMessageText("")
+            }
         }
     }
 
@@ -56,7 +67,7 @@ const Chat = () => {
                 )}
             </Box>
 
-            <Box style={{ display: "flex", flexDirection: "row" }}>
+            <Box style={{ display: "flex", flexDirection: "row", width: "100%" }}>
                 <TextField
                     style={{ width: "70%" }}
                     value={messageText}

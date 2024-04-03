@@ -4,7 +4,6 @@ import {useSelector} from "react-redux"
 import Chat from "./Chat/Chat"
 import ChatLink from "./ChatLink/ChatLink"
 
-
 const MessagesPage = () => {
     const chats = useSelector(state => state.messagesPage.chats)
 
