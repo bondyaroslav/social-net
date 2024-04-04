@@ -7,8 +7,6 @@ import ChatLink from "./ChatLink/ChatLink"
 const MessagesPage = () => {
     const chats = useSelector(state => state.messagesPage.chats)
 
-    console.log(chats[0].messages[0])
-    console.log(chats[0].messages.length)
     return (
         <Box style={{display: "flex"}}>
             <Box style={{width: "30%"}}>
