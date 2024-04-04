@@ -23,11 +23,11 @@ const Chat = () => {
         return false
     }
 
-    const sendMessage = (userId, userName, messageText) => {
+    const sendMessage = (userId, messageText) => {
         if (currentChat) {
             const newMessage = {
                 date: new Date().getTime(),
-                author: userName,
+                author: "me",
                 text: messageText,
             }
             if (isEmpty(newMessage.text)) {
@@ -55,7 +55,18 @@ const Chat = () => {
                         {messages.length > 0 ? (
                             <>
                                 {messages.map((message) => (
-                                    <Message key={message.date} date={message.date} text={message.text}/>
+                                    <Box style={{
+                                        display: "flex",
+                                        justifyContent: message.author === "me" ? "flex-end" : "flex-start",
+                                        width: "100%"
+                                    }}>
+                                        <Message
+                                            key={message.date}
+                                            date={message.date}
+                                            author={message.author}
+                                            text={message.text}
+                                        />
+                                    </Box>
                                 ))}
                             </>
                         ) : (
@@ -67,20 +78,20 @@ const Chat = () => {
                 )}
             </Box>
 
-            <Box style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+            <Box className={style.textFieldWrapper}>
                 <TextField
-                    style={{ width: "70%" }}
+                    sx={{width: "70%", borderRadius: 50}}
                     value={messageText}
                     onChange={(event) => {onInputMessage(event.target.value)}}
                     onKeyUp={(event) => {
                         if (event.key === "Enter") {
-                            sendMessage(currentChat.id, currentChat.userName, messageText)
+                            sendMessage(currentChat.id, messageText)
                         }
                     }}
                 />
                 <Button
-                    style={{ width: "30%" }}
-                    onClick={() => {sendMessage(currentChat.id, currentChat.userName, messageText)}}
+                    sx={{width: "30%", borderRadius: 10}}
+                    onClick={() => {sendMessage(currentChat.id, messageText)}}
                 >
                     send message
                 </Button>
