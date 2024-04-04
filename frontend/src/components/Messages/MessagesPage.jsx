@@ -7,6 +7,8 @@ import ChatLink from "./ChatLink/ChatLink"
 const MessagesPage = () => {
     const chats = useSelector(state => state.messagesPage.chats)
 
+    console.log(chats[0].messages[0])
+    console.log(chats[0].messages.length)
     return (
         <Box style={{display: "flex"}}>
             <Box style={{width: "30%"}}>
@@ -14,7 +16,7 @@ const MessagesPage = () => {
                     <ChatLink
                         key={chat.id}
                         id={chat.id}
-                        messages={chat.messages}
+                        lastMessage={chat.messages[chat.messages.length - 1].text}
                         userName={chat.userName}
                     />
                 ))}

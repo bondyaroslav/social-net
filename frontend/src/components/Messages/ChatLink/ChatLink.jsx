@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux"
 import {setCurrentChatAC} from "../../../store/reducers/messagesReducer"
 import style from "./ChatLink.module.scss"
 
-const ChatLink = ({id, userName}) => {
+const ChatLink = ({id, userName, lastMessage}) => {
     const dispatch = useDispatch()
 
     return (
@@ -15,6 +15,7 @@ const ChatLink = ({id, userName}) => {
                  onClick={() => {dispatch(setCurrentChatAC(id))}}
             >
                 <Typography className={style.chatName}>{userName}</Typography>
+                <Typography className={style.lastMessage}>{lastMessage}</Typography>
             </Box>
         </Link>
     )
