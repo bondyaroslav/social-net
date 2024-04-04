@@ -20,7 +20,7 @@ const ChatLink = ({id, userName, lastMessage}) => {
         <Link to={`/messages/${id}`} className={style.chatLink}>
             <Box className={style.Chat} onClick={() => {dispatch(setCurrentChatAC(id))}}>
                 <Typography className={style.chatName}>{userName}</Typography>
-                <Typography style={{marginLeft: 15}}>{validateText(lastMessage)}</Typography>
+                <Typography style={{marginLeft: 15}}>{lastMessage ? validateText(lastMessage) : null}</Typography>
             </Box>
         </Link>
     )

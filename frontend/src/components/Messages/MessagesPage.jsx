@@ -14,7 +14,7 @@ const MessagesPage = () => {
                     <ChatLink
                         key={chat.id}
                         id={chat.id}
-                        lastMessage={chat.messages[chat.messages.length - 1].text}
+                        lastMessage={chat.messages.length > 0 ? chat.messages[chat.messages.length - 1].text : null}
                         userName={chat.userName}
                     />
                 ))}
