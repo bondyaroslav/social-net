@@ -5,8 +5,8 @@ let initialState = {
             id: 1,
             userName: "Petr",
             messages: [
-                {date: 1712067331357, author: "Petr", text: "chat 1"},
-                {date: 1712067331358, author: "me", text: "howsadfsd are you?"},
+                {date: 1712067331357, author: "Petr", text: "hi"},
+                {date: 1712067331358, author: "me", text: "how are you?"},
             ]
         },
         {
