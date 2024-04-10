@@ -11,7 +11,7 @@ const News = () => {
     const dispatch = useDispatch()
     const news = useSelector(state => state.newsPage.news)
     const [currentPage, setCurrentPage] = useState(1)
-    const [pageSize, setPageSize] = useState(4)
+    const [pageSize, setPageSize] = useState(3)
     const [paginatedNews, setPaginatedNews] = useState([])
 
     useEffect(() => {
@@ -33,14 +33,18 @@ const News = () => {
     }
 
     return (
-        <Box style={{marginTop: 30}}>
+        <Box style={{marginTop: 20}}>
             <NewsNavbar getNews={getNewsByCategory}/>
 
             {news ? (
                 <>
-                    {paginatedNews.map((el, index) => (
-                        <NewsItem key={index} el={el}/>
-                    ))}
+                    {paginatedNews.map((el, index) => {
+                        if (el.title !== "[Removed]") {
+                            return <NewsItem key={index} el={el}/>
+                        } else {
+                            return null
+                        }
+                    })}
                     <Pagination
                         count={Math.ceil(news.length / pageSize)}
                         page={currentPage}

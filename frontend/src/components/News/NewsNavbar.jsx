@@ -19,8 +19,8 @@ const NewsNavbar = ({getNews}) => {
         <Card style={{
             display: "flex",
             justifyContent: "space-between",
-            marginBottom: '20px',
-            borderRadius: '8px',
+            marginBottom: 20,
+            borderRadius: 8,
             boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
         }}>
             <FormControl sx={{m: 1, minWidth: 180}}>

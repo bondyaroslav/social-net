@@ -4,7 +4,7 @@ import {Route, Routes} from "react-router-dom"
 import Header from "./components/Header/Header"
 import Sidebar from "./components/Sidebar/Sidebar"
 import ProfileContainer from "./components/Profile/ProfileContainer"
-import News from "./components/News/News"
+import NewsPage from "./components/News/NewsPage"
 import Settings from "./components/Settings/Settings"
 import MessagesPage from "./components/Messages/MessagesPage"
 import UsersContainer from "./components/Users/UsersContainer"
@@ -35,7 +35,7 @@ const App = ({store}) => {
                         <Route path="/messages" element={ <MessagesPage />}/>
                         <Route path="/messages/:userId" element={ <MessagesPage />}/>
                         <Route path="/users" element={ <UsersContainer />}/>
-                        <Route path="/news" element={<News />}/>
+                        <Route path="/news" element={<NewsPage />}/>
                         <Route path="/settings" element={<Settings />}/>
                         <Route path="*" element={<NotFoundPage />}/>
                     </Routes>
