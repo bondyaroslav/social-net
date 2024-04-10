@@ -8,11 +8,10 @@ const NewsNavbar = ({getNews}) => {
     const dispatch = useDispatch()
     const categories = ["business", "entertainment", "general", "health", "science", "sports", "technology"]
     const [category, setCategory] = useState("")
-
     const [query, setQuery] = useState("")
 
     useEffect(() => {
-        dispatch(getNews(category))
+        dispatch(getNews)
     }, [category])
 
     return (
@@ -28,9 +27,7 @@ const NewsNavbar = ({getNews}) => {
                 <Select
                     label="News Category"
                     value={category}
-                    onChange={(event) => {
-                        setCategory(event.target.value)
-                    }}
+                    onChange={(event) => {setCategory(event.target.value)}}
                 >
                     {categories.map(category => (
                         <MenuItem key={category} value={category}>{category}</MenuItem>
@@ -44,6 +41,11 @@ const NewsNavbar = ({getNews}) => {
                     variant="outlined"
                     value={query}
                     onChange={(event) => {setQuery(event.target.value)}}
+                    onKeyUp={(event) => {
+                        if (event.key === "Enter") {
+                            dispatch(getNewsByQuery(query))
+                        }
+                    }}
                 />
                 <IconButton onClick={() => {dispatch(getNewsByQuery(query))}}>
                     <SearchIcon/>

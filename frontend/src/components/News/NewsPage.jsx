@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 import Preloader from "../Preloader"
-import {Box, Container} from "@mui/system"
+import {Box} from "@mui/system"
 import NewsItem from "./NewsItem"
 import NewsNavbar from "./NewsNavbar"
 import {useDispatch, useSelector} from "react-redux"
