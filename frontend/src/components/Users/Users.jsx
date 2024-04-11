@@ -5,7 +5,7 @@ import Preloader from "../Preloader"
 import {Box} from "@mui/system"
 import {Button, Card, Pagination, Typography} from "@mui/material"
 import {useDispatch} from "react-redux"
-import {createNewChatAC} from "../../store/reducers/messagesReducer"
+import {createNewChatAC, setCurrentChatAC} from "../../store/reducers/messagesReducer"
 
 const Users = (
     {
@@ -37,6 +37,7 @@ const Users = (
                 messages: []
             }
         dispatch(createNewChatAC(newChat))
+        dispatch(setCurrentChatAC(newChat.id))
     }
 
     return (

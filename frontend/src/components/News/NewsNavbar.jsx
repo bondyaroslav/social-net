@@ -11,7 +11,7 @@ const NewsNavbar = ({getNews}) => {
     const [query, setQuery] = useState("")
 
     useEffect(() => {
-        dispatch(getNews)
+        dispatch(getNews(category))
     }, [category])
 
     return (
