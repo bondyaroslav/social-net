@@ -1,3 +1,5 @@
+import {createSlice} from "@reduxjs/toolkit"
+
 const initialState = {
     email: null,
     id: null,
@@ -5,39 +7,30 @@ const initialState = {
     isAuth: false
 }
 
-const SET_USER_EMAIL = "SET_USER_EMAIL"
-const SET_USER_ID = "SET_USER_ID"
-const SET_USER_LOGIN = "SET_USER_LOGIN"
-const SET_IS_AUTH = "SET_IS_AUTH"
-
-const authReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case SET_USER_EMAIL:
-            return  {
-                ...state, email: action.email
-            }
-
-        case SET_USER_ID:
-            return  {
-                ...state, id: action.id
-            }
-
-        case SET_USER_LOGIN:
-            return  {
-                ...state, login: action.login
-            }
-
-        case SET_IS_AUTH:
-            return {
-                ...state, isAuth: action.payload
-            }
-        default: return state
+const authSlice = createSlice({
+    name: "auth",
+    initialState,
+    reducers: {
+        setUserEmail: (state, action) => {
+            state.email = action.payload
+        },
+        setUserId: (state, action) => {
+            state.id = action.payload
+        },
+        setUserLogin: (state, action) => {
+            state.login = action.payload
+        },
+        setIsAuth: (state, action) => {
+            state.isAuth = action.payload
+        },
     }
-}
+})
 
-export const setUserEmailAC = (email) => ({type: SET_USER_EMAIL, email})
-export const setUserIdAC = (id) => ({type: SET_USER_ID, id})
-export const setUserLoginAC = (login) => ({type: SET_USER_LOGIN, login})
-export const setIsAuthAC = (payload) => ({type: SET_IS_AUTH, payload})
+export const {
+    setUserEmail,
+    setUserId,
+    setUserLogin,
+    setIsAuth,
+} = authSlice.actions
 
-export default authReducer
+export default authSlice.reducer

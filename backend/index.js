@@ -2,6 +2,14 @@ const express = require("express")
 const app = express()
 const port = 5000
 
+const pool = new Pool({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'social-net',
+    password: 'postgres',
+    port: 5432,
+})
+
 const http = require("http").Server(app)
 const cors = require("cors")
 const socketIO = require("socket.io")(http, {
