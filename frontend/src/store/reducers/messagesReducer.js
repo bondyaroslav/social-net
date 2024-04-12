@@ -1,3 +1,5 @@
+import {createSlice} from "@reduxjs/toolkit"
+
 let initialState = {
     currentChat: null,
     chats: [
@@ -20,53 +22,28 @@ let initialState = {
     ]
 }
 
-const CREATE_NEW_CHAT = "CREATE_NEW_CHAT"
-const SET_CURRENT_CHAT = "SET_CURRENT_CHAT"
-const SEND_MESSAGE = "SEND_MESSAGE"
-const DELETE_MESSAGE = "DELETE_MESSAGE"
-const DELETE_CHAT = "DELETE_CHAT"
-
-const messagesReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case CREATE_NEW_CHAT:
-            const isChatExist = state.chats.some(chat => chat.id === action.newChat.id)
-            if (isChatExist) {
-                return state
+const messagesSlice = createSlice({
+    name: "messages",
+    initialState,
+    reducers: {
+        createNewChat: (state, action) => {
+            const isChatExist = state.chats.some(chat => chat.id === action.payload.id)
+            if (!isChatExist) {
+                state.chats.push(action.payload)
             }
-            const filteredChats = state.chats.filter(chat => chat.id !== action.newChat.id)
-            return {...state, chats: [...filteredChats, action.newChat]}
-
-        case SET_CURRENT_CHAT:
-            const currentChat = state.chats.filter(chat => chat.id === action.id)
-            return {
-                ...state,
-                currentChat: currentChat[0]
+        },
+        setCurrentChat: (state, action) => {
+            state.currentChat = state.chats.find(chat => chat.id === action.payload)
+        },
+        sendMessage: (state, action) => {
+            const chatIndex = state.chats.findIndex(chat => chat.id === action.payload.chatId)
+            if (chatIndex !== -1) {
+                state.chats[chatIndex].messages.push(action.payload.message)
             }
+        },
+    },
+})
 
-        case SEND_MESSAGE:
-            const updatedChats = state.chats.map(chat => {
-                if (chat.id === action.chatId) {
-                    return {
-                        ...chat,
-                        messages: [...chat.messages, action.message]
-                    }
-                }
-                return chat
-            })
-            return {
-                ...state,
-                chats: updatedChats
-            }
+export const { createNewChat, setCurrentChat, sendMessage } = messagesSlice.actions
 
-        default:
-            return state
-    }
-}
-
-export const createNewChatAC = (newChat) => ({type: CREATE_NEW_CHAT, newChat})
-
-export const setCurrentChatAC = (id) => ({type: SET_CURRENT_CHAT, id})
-export const sendMessageAC = (chatId, message) => ({type: SEND_MESSAGE, chatId, message})
-
-
-export default messagesReducer
+export default messagesSlice.reducer

@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom"
 import { follow, unfollow } from "../../api/usersApi"
 import axios from "axios"
 import { useDispatch } from "react-redux"
-import { createNewChatAC } from "../../store/reducers/messagesReducer"
+import { createNewChat } from "../../store/reducers/messagesReducer"
 
 const ProfileInfo = ({ profile, isItAuthUserAccount }) => {
 
@@ -31,7 +31,7 @@ const ProfileInfo = ({ profile, isItAuthUserAccount }) => {
             userName: userName,
             messages: []
         }
-        dispatch(createNewChatAC(newChat))
+        dispatch(createNewChat(newChat))
     }
 
     const handleFileChange = (event) => {

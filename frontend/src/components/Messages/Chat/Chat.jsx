@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import {Button, Card, TextField, Typography} from "@mui/material"
 import {Box} from "@mui/system"
-import {sendMessageAC} from "../../../store/reducers/messagesReducer"
+import {sendMessage} from "../../../store/reducers/messagesReducer"
 import style from "./Chat.module.scss"
 import Message from "./Message"
 
@@ -34,7 +34,7 @@ const Chat = () => {
                 return null
             } else {
                 setMessages((prevMessages) => [...prevMessages, newMessage])
-                dispatch(sendMessageAC(userId, newMessage))
+                dispatch(sendMessage(userId, newMessage))
                 setMessageText("")
             }
         }

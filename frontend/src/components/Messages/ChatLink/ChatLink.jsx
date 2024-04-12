@@ -3,7 +3,7 @@ import {Typography} from "@mui/material"
 import {Link} from "react-router-dom"
 import {Box} from "@mui/system"
 import {useDispatch} from "react-redux"
-import {setCurrentChatAC} from "../../../store/reducers/messagesReducer"
+import {setCurrentChat} from "../../../store/reducers/messagesReducer"
 import style from "./ChatLink.module.scss"
 
 const ChatLink = ({id, userName, lastMessage}) => {
@@ -18,7 +18,7 @@ const ChatLink = ({id, userName, lastMessage}) => {
 
     return (
         <Link to={`/messages/${id}`} className={style.chatLink}>
-            <Box className={style.Chat} onClick={() => {dispatch(setCurrentChatAC(id))}}>
+            <Box className={style.Chat} onClick={() => {dispatch(setCurrentChat(id))}}>
                 <Typography className={style.chatName}>{userName}</Typography>
                 <Typography style={{marginLeft: 15}}>{lastMessage ? validateText(lastMessage) : null}</Typography>
             </Box>
