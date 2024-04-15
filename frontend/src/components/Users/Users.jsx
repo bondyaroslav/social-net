@@ -1,11 +1,12 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import userPhoto from "../../assets/images/userPhoto.jpg"
 import {NavLink} from "react-router-dom"
 import Preloader from "../Preloader"
 import {Box} from "@mui/system"
 import {Button, Card, Pagination, Typography} from "@mui/material"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {createNewChat, setCurrentChat} from "../../store/reducers/messagesReducer"
+import {follow, unfollow} from "../../api/usersApi"
 
 const Users = (
     {
@@ -14,10 +15,8 @@ const Users = (
         totalUsersCount,
         isFetching,
         currentPage,
-        setCurrentPage,
+        setCurrentPageFunc,
         getUsers,
-        follow,
-        unfollow,
     }) => {
 
     const dispatch = useDispatch()
@@ -27,15 +26,15 @@ const Users = (
     }, [currentPage])
 
     const onChangePage = (event, page) => {
-        setCurrentPage(page)
+        setCurrentPageFunc(page)
     }
 
     const onSendMessageClick = (userId, userName) => {
         const newChat = {
-                id: userId,
-                userName: userName,
-                messages: []
-            }
+            id: userId,
+            userName: userName,
+            messages: []
+        }
         dispatch(createNewChat(newChat))
         dispatch(setCurrentChat(newChat.id))
     }
@@ -47,12 +46,29 @@ const Users = (
                 :
                 <Box>
                     {users.map((user) => (
-                        <Card key={user.id} style={{display: "flex", justifyContent: "space-between", marginTop: 10, marginBottom: 10}}>
+                        <Card key={user.id}
+                              style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  marginTop: 10,
+                                  marginBottom: 10
+                              }}>
                             <Box style={{display: "flex"}}>
-                                <NavLink to={`/profile/${user.id}`} style={{display: "flex", flexDirection: "column", maxWidth: 120, height: 120}}>
+                                <NavLink to={`/profile/${user.id}`}
+                                         style={{
+                                             display: "flex",
+                                             flexDirection: "column",
+                                             maxWidth: 120,
+                                             height: 120
+                                         }}
+                                >
                                     <img src={user.photos.small || userPhoto} style={{width: 120}}/>
                                 </NavLink>
-                                <Box style={{display: "flex", flexDirection: "column", marginLeft: 20}}>
+                                <Box style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    marginLeft: 20
+                                }}>
                                     <Typography style={{fontSize: 22}}>{user.name}</Typography>
                                     <Box>
                                         {user.status
@@ -60,15 +76,30 @@ const Users = (
                                             : <Typography>no status</Typography>
                                         }
                                     </Box>
-                                    <NavLink to={`/messages/${user.id}`} style={{display: "flex", flexDirection: "column", textDecoration: "none"}}>
-                                        <Button style={{width: 150, marginTop: 15}} onClick={() => {onSendMessageClick(user.id, user.name)}}>send message</Button>
+                                    <NavLink to={`/messages/${user.id}`}
+                                             style={{
+                                                 display: "flex",
+                                                 flexDirection: "column",
+                                                 textDecoration: "none"
+                                             }}>
+                                        <Button style={{width: 150, marginTop: 15}} onClick={() => {
+                                            onSendMessageClick(user.id, user.name)
+                                        }}>send message</Button>
                                     </NavLink>
                                 </Box>
                             </Box>
-                            <Box style={{display: "flex", justifyContent: "center", alignItems: "center", alignContent: "center", width: "20%", height: 120}}>
+                            <Box style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                alignContent: "center",
+                                width: "20%",
+                                height: 120
+                            }}
+                            >
                                 {user.followed
-                                    ? <Button onClick={() => unfollow(user.id)}>unfollow</Button>
-                                    : <Button onClick={() => follow(user.id)}>follow</Button>
+                                    ? <Button onClick={() => dispatch(unfollow(user.id))}>unfollow</Button>
+                                    : <Button onClick={() => dispatch(follow(user.id))}>follow</Button>
                                 }
                             </Box>
                         </Card>

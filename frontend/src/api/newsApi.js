@@ -1,5 +1,5 @@
 import axios from "axios"
-import {setNewsAC} from "../store/reducers/newsReducer"
+import {setNews} from "../store/reducers/newsReducer"
 
 const instance = axios.create({
     withCredentials: true,
@@ -13,7 +13,7 @@ export const getNewsByCategory = (category) => {
     return (dispatch) => {
         axios.get(`https://newsapi.org/v2/top-headlines?country=de&category=${category}&apiKey=${key}`)
             .then(response => {
-                dispatch(setNewsAC(response.data.articles))
+                dispatch(setNews(response.data.articles))
             })
     }
 }
@@ -22,7 +22,7 @@ export const getNewsByQuery = (query) => {
     return (dispatch) => {
         axios.get(`https://newsapi.org/v2/everything?q=${query}&apiKey=${key}`)
             .then(response => {
-                dispatch(setNewsAC(response.data.articles))
+                dispatch(setNews(response.data.articles))
             })
     }
 }

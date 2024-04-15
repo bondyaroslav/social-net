@@ -1,6 +1,6 @@
 import {connect} from "react-redux"
 import Users from "./Users"
-import {setCurrentPage, follow, getUsers, unfollow} from "../../api/usersApi"
+import {setCurrentPageFunc, follow, getUsers, unfollow} from "../../api/usersApi"
 
 const mapStateToProps = (state) => {
     return {
@@ -16,5 +16,5 @@ export default connect(mapStateToProps, {
     getUsers,
     follow,
     unfollow,
-    setCurrentPage
+    setCurrentPageFunc
 })(Users)

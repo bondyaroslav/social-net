@@ -3,14 +3,14 @@ import Post from "./Post"
 import {Button, TextField, Typography} from "@mui/material"
 import {Box} from "@mui/system"
 import {useDispatch, useSelector} from "react-redux"
-import {addPostAC} from "../../store/reducers/profileReducer"
+import {addPost} from "../../store/reducers/profileReducer"
 
 const MyPosts = ({isItAuthUserAccount}) => {
     const dispatch = useDispatch()
     const posts = useSelector(state => state.profilePage.posts)
     const [postText, setPostText] = useState("")
 
-    const addPost = () => {
+    const onAddPost = () => {
         const id = new Date().getTime()
         const date = new Date(id)
         const formattedDate = new Intl.DateTimeFormat('en-GB', {
@@ -23,8 +23,8 @@ const MyPosts = ({isItAuthUserAccount}) => {
 
         const newPost = {id: id, text: postText, date: formattedDate}
         if (postText === "") {
-            return 0
-        } else dispatch(addPostAC(newPost))
+            return null
+        } else dispatch(addPost(newPost))
         setPostText("")
     }
 
@@ -45,12 +45,12 @@ const MyPosts = ({isItAuthUserAccount}) => {
                             onChange={(event) => {onInputName(event.target.value)}}
                             onKeyUp={(event) => {
                                 if (event.key === "Enter") {
-                                    addPost()
+                                    onAddPost()
                                 }}}
                         />
                         <Button
                             style={{marginLeft: 5}}
-                            onClick={addPost}
+                            onClick={onAddPost}
                         >
                             Add post
                         </Button>

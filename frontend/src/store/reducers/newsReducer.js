@@ -1,20 +1,19 @@
+import {createSlice} from "@reduxjs/toolkit"
+
 const initialState = {
     news: null
 }
 
-const SET_NEWS = "SET_NEWS"
-
-const newsReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case SET_NEWS:
-            return {
-                ...state,
-                news: action.news
-            }
-        default: return state
+const newsSlice = createSlice({
+    name: "news",
+    initialState,
+    reducers: {
+        setNews: (state, action) => {
+            state.news = action.payload
+        }
     }
-}
+})
 
-export const setNewsAC = (news) => ({type: SET_NEWS, news})
+export const {setNews} = newsSlice.actions
 
-export default newsReducer
+export default newsSlice.reducer

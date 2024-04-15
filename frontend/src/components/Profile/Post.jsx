@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import CheckIcon from '@mui/icons-material/Check'
 import {useDispatch} from "react-redux"
-import {deletePostAC, editPostTextAC} from "../../store/reducers/profileReducer"
+import {deletePost, editPost} from "../../store/reducers/profileReducer"
 
 const Post = ({ id, text, date }) => {
     const dispatch = useDispatch()
@@ -14,10 +14,10 @@ const Post = ({ id, text, date }) => {
     const textAreaRef = useRef()
 
     const handleDelete = () => {
-        dispatch(deletePostAC(id))
+        dispatch(deletePost(id))
     }
 
-    const editPost = () => {
+    const onEditPost = () => {
         setIsPostEditing(true)
     }
 
@@ -28,7 +28,7 @@ const Post = ({ id, text, date }) => {
     const confirmEditingPost = () => {
         if (textAreaRef.current) {
             const newText = textAreaRef.current.value
-            dispatch(editPostTextAC(id, newText))
+            dispatch(editPost({postId: id, newPostText: editedText}))
             setIsPostEditing(false)
         }
     }
@@ -71,7 +71,7 @@ const Post = ({ id, text, date }) => {
                         <CheckIcon/>
                     </IconButton>
                 ) : (
-                    <IconButton aria-label="edit" onClick={editPost}>
+                    <IconButton aria-label="edit" onClick={onEditPost}>
                         <EditIcon />
                     </IconButton>
                 )}
