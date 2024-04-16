@@ -29,16 +29,20 @@ const messagesSlice = createSlice({
         createNewChat: (state, action) => {
             const isChatExist = state.chats.some(chat => chat.id === action.payload.id)
             if (!isChatExist) {
-                state.chats.push(action.payload)
+                state.chats = [...state.chats, action.payload]
             }
         },
         setCurrentChat: (state, action) => {
             state.currentChat = state.chats.find(chat => chat.id === action.payload)
         },
         sendMessage: (state, action) => {
-            const chatIndex = state.chats.findIndex(chat => chat.id === action.payload.chatId)
+            const { chatId, message } = action.payload
+            const chatIndex = state.chats.findIndex(chat => chat.id === chatId)
             if (chatIndex !== -1) {
-                state.chats[chatIndex].messages.push(action.payload.message)
+                state.chats[chatIndex] = {
+                    ...state.chats[chatIndex],
+                    messages: [...state.chats[chatIndex].messages, message]
+                }
             }
         },
     },

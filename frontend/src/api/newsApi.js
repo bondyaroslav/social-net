@@ -27,3 +27,37 @@ export const getNewsByQuery = (query) => {
     }
 }
 
+
+
+//
+// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+// import { setNews } from '../store/reducers/newsReducer'
+//
+// const newsApi = createApi({
+//     reducerPath: 'news',
+//     baseQuery: fetchBaseQuery({ baseUrl: 'https://newsapi.org/v2/' }),
+//     endpoints: (builder) => ({
+//         getTopHeadlinesByCategory: builder.query({
+//             query: (category) => `top-headlines?country=de&category=${category}`,
+//         }),
+//         getNewsByQuery: builder.query({
+//             query: (query) => `everything?q=${query}`,
+//         }),
+//     }),
+// })
+//
+// export const { useGetTopHeadlinesByCategoryQuery, useGetNewsByQueryQuery } = newsApi
+//
+// export const getNewsByCategory = (category) => {
+//     return async (dispatch) => {
+//         const { data } = await newsApi.endpoints.getTopHeadlinesByCategory(category).unwrap()
+//         dispatch(setNews(data.articles))
+//     }
+// }
+//
+// export const getNewsByQuery = (query) => {
+//     return async (dispatch) => {
+//         const { data } = await newsApi.endpoints.getNewsByQuery(query).unwrap()
+//         dispatch(setNews(data.articles))
+//     }
+// }
