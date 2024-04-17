@@ -1,42 +1,59 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Button, TextField, Typography } from "@mui/material"
-import { Box } from "@mui/system"
-import { sendMessage } from "../../../store/reducers/messagesReducer"
-import style from "./Chat.module.scss"
-import Message from "./Message"
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, TextField, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { sendMessage } from "../../../store/reducers/messagesReducer";
+import style from "./Chat.module.scss";
+import Message from "./Message";
 
 const Chat = () => {
-    const dispatch = useDispatch()
-    const currentChat = useSelector((state) => state.messagesPage.currentChat)
-    const messages = useSelector((state) => currentChat ? state.messagesPage.chats.find(chat => chat.id === currentChat.id)?.messages : [])
-    const [messageText, setMessageText] = useState("")
+    const dispatch = useDispatch();
+    const currentChat = useSelector((state) => state.messagesPage.currentChat);
+    const messages = useSelector((state) => currentChat ? state.messagesPage.chats.find(chat => chat.id === currentChat.id)?.messages : []);
+    const [messageText, setMessageText] = useState("");
 
     const onInputMessage = (text) => {
-        setMessageText(text)
+        setMessageText(text);
     }
 
     function isEmpty(str) {
-        return str.trim() === ""
+        if (str.trim() === "") {
+            return true
+        }
+        return false
     }
 
-    const onSendMessage = () => {
+    const onSendMessage = async () => {
         if (currentChat) {
-            const newMessage = {
-                date: new Date().getTime(),
-                author: "me",
-                text: messageText,
-            }
-            if (!isEmpty(newMessage.text)) {
-                dispatch(sendMessage({ chatId: currentChat.id, message: newMessage }))
-                setMessageText("")
+            if (!isEmpty(messageText)) {
+                const newMessage = {
+                    messageId: Date.now(),
+                    messageSenderId: "me",
+                    messageTakerId: currentChat.id,
+                    messageText: messageText,
+                    messageData: new Date().toISOString()
+                };
+                const response = await fetch("http://localhost:5000/api/messages", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newMessage)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    dispatch(sendMessage({ chatId: currentChat.id, message: newMessage }));
+                    setMessageText("");
+                } else {
+                    console.error("Error sending message:", result.message);
+                }
             }
         }
     }
 
     useEffect(() => {
-        setMessageText("")
-    }, [currentChat])
+        setMessageText("");
+    }, [currentChat]);
 
     return (
         <Box className={style.ChatPage}>
@@ -49,7 +66,7 @@ const Chat = () => {
                         {messages.length > 0 ? (
                             <>
                                 {messages.map((message) => (
-                                    <Box key={message.date} style={{ display: "flex", justifyContent: message.author === "me" ? "flex-end" : "flex-start", width: "100%" }}>
+                                    <Box key={message.id} style={{ display: "flex", justifyContent: message.messageSenderId === "me" ? "flex-end" : "flex-start", width: "100%" }}>
                                         <Message date={message.date} author={message.author} text={message.text} />
                                     </Box>
                                 ))}
@@ -81,4 +98,4 @@ const Chat = () => {
     )
 }
 
-export default Chat
+export default Chat;
