@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import CheckIcon from '@mui/icons-material/Check'
 import {useDispatch} from "react-redux"
-import {deletePost, editPost} from "../../store/reducers/profileReducer"
+import {deletePost, editPost} from "../../../store/reducers/profileReducer"
 
 const Post = ({ id, text, date }) => {
     const dispatch = useDispatch()

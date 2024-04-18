@@ -2,13 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Divider } from '@mui/material'
 import { AccountCircle, Message, People, LibraryBooks, Settings } from '@mui/icons-material'
+import {useSelector} from "react-redux";
 
-const Sidebar = ({userId}) => {
+const Sidebar = () => {
+    const authUserId = useSelector( state => state.auth.id )
     return (
         <div>
             <Drawer variant="permanent">
                 <List style={{width: 200}}>
-                    <ListItem button component={Link} to={`/profile/${userId}`}>
+                    <ListItem button component={Link} to={`/profile/${authUserId}`}>
                         <ListItemIcon>
                             <AccountCircle />
                         </ListItemIcon>

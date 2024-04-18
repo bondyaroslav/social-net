@@ -2,7 +2,7 @@ import './App.css'
 import React, {useEffect} from "react"
 import {Route, Routes} from "react-router-dom"
 import Sidebar from "./components/Sidebar/Sidebar"
-import ProfileContainer from "./components/Profile/ProfileContainer"
+import ProfilePage from "./components/Profile/ProfilePage"
 import NewsPage from "./components/News/NewsPage"
 import Settings from "./components/Settings/Settings"
 import MessagesPage from "./components/Messages/MessagesPage"
@@ -15,7 +15,6 @@ import {authMe} from "./api/authApi"
 const App = ({store}) => {
     const dispatch = useDispatch()
     const authStatus = useSelector( state => (state.auth.isAuth) )
-    const userId = useSelector( state => state.auth.id )
 
     useEffect(() => {
         dispatch(authMe())
@@ -24,10 +23,10 @@ const App = ({store}) => {
     if (authStatus === true) {
         return (
             <div className="App">
-                <Sidebar userId={userId}/>
+                <Sidebar/>
                 <Routes>
-                    <Route path="/" element={ <ProfileContainer store={store} userId={userId} />}/>
-                    <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>
+                    <Route path="/" element={ <ProfilePage />}/>
+                    <Route path="/profile/:userId"  element={ <ProfilePage store={store} />}/>
                     <Route path="/messages" element={ <MessagesPage />}/>
                     <Route path="/messages/:userId" element={ <MessagesPage />}/>
                     <Route path="/users" element={ <UsersContainer />}/>

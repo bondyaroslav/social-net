@@ -1,0 +1,64 @@
+.largeUserPhoto {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.defaultLargeUserPhoto {
+  width: 100%;
+  height: 150px;
+  background-color: whitesmoke;
+}
+
+.profileInfoContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.userPhotoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.smallUserPhoto {
+  width: 150px;
+  height: 150px;
+}
+
+.photoInput {
+  width: 150px;
+}
+
+.userInfoContainer {
+  margin-left: 20px;
+}
+
+.userName {
+  font-size: 30px;
+}
+
+.jobStatus {
+  font-size: 16px;
+}
+
+.messageButtonContainer {
+  margin-top: 10px;
+}
+
+.messageButton {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+.followButtonContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+}
+
+.followButton {
+  width: 120px;
+  height: 50px;
+  font-size: 18px;
+}
