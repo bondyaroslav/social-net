@@ -1,7 +1,6 @@
 import './App.css'
 import React, {useEffect} from "react"
 import {Route, Routes} from "react-router-dom"
-import Header from "./components/Header/Header"
 import Sidebar from "./components/Sidebar/Sidebar"
 import ProfileContainer from "./components/Profile/ProfileContainer"
 import NewsPage from "./components/News/NewsPage"
@@ -14,7 +13,6 @@ import {useDispatch, useSelector} from "react-redux"
 import {authMe} from "./api/authApi"
 
 const App = ({store}) => {
-
     const dispatch = useDispatch()
     const authStatus = useSelector( state => (state.auth.isAuth) )
     const userId = useSelector( state => state.auth.id )
@@ -27,19 +25,16 @@ const App = ({store}) => {
         return (
             <div className="App">
                 <Sidebar userId={userId}/>
-                <div className={"wrapper"}>
-                    <Header/>
-                    <Routes>
-                        <Route path="/" element={ <ProfileContainer store={store} userId={userId} />}/>
-                        <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>
-                        <Route path="/messages" element={ <MessagesPage />}/>
-                        <Route path="/messages/:userId" element={ <MessagesPage />}/>
-                        <Route path="/users" element={ <UsersContainer />}/>
-                        <Route path="/news" element={<NewsPage />}/>
-                        <Route path="/settings" element={<Settings />}/>
-                        <Route path="*" element={<NotFoundPage />}/>
-                    </Routes>
-                </div>
+                <Routes>
+                    <Route path="/" element={ <ProfileContainer store={store} userId={userId} />}/>
+                    <Route path="/profile/:userId"  element={ <ProfileContainer store={store} />}/>
+                    <Route path="/messages" element={ <MessagesPage />}/>
+                    <Route path="/messages/:userId" element={ <MessagesPage />}/>
+                    <Route path="/users" element={ <UsersContainer />}/>
+                    <Route path="/news" element={<NewsPage />}/>
+                    <Route path="/settings" element={<Settings />}/>
+                    <Route path="*" element={<NotFoundPage />}/>
+                </Routes>
             </div>
         )
     } else return <AuthPage/>
