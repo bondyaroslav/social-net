@@ -6,13 +6,13 @@ export const authMe = () => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
             .then( response => {
                 if (response.data.resultCode === 0) {
-                    dispatch(setIsAuth(true))
                     const email = response.data.data.email
                     const id = response.data.data.id
                     const login = response.data.data.login
                     dispatch(setUserEmail(email))
                     dispatch(setUserId(id))
                     dispatch(setUserLogin(login))
+                    dispatch(setIsAuth(true))
                 }
             })
             .catch(error => {

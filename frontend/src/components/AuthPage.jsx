@@ -1,47 +1,72 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react'
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material'
+import {useDispatch, useSelector} from "react-redux"
+import {setIsAuth} from "../store/reducers/authReducer"
+import style from "./AuthPage.module.scss"
+import axios from "axios"
+import {authMe} from "../api/authApi"
 
 const AuthModal = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
+    const dispatch = useDispatch()
+    const [open, setOpen] = useState(!useSelector(state => state.auth.isAuth))
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const handleLogin = () => {
-        // Додатковий код для авторизації користувача
-        // Можна включити відправку даних на сервер для авторизації
-        alert('Logged in!');
-        closeModal();
-    };
+        console.log('Email:', email)
+        console.log('Password:', password)
+    }
+
+    const login = () => {
+        axios.post("https://social-network.samuraijs.com/api/1.0/auth/login", {email, password})
+            .then(response => console.log(response))
+            .catch(error => console.error(error))
+        setTimeout(authMe, 1500)
+    }
+
+    //setTimeout(authMe, 1000)
+
+    const onCancel = () => {
+        setEmail("")
+        setPassword("")
+    }
 
     return (
         <div>
-            <button onClick={openModal}>Log In</button>
-            {isModalOpen && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <span className="close" onClick={closeModal}>&times;</span>
-                        <h2>Log In</h2>
-                        <form>
-                            <label>
-                                Username:
-                                <input type="text" />
-                            </label>
-                            <label>
-                                Password:
-                                <input type="password" />
-                            </label>
-                            <button type="button" onClick={handleLogin}>Log In</button>
-                        </form>
-                    </div>
-                </div>
-            )}
+            <Dialog open={open}>
+                <DialogTitle>Authorization</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="email"
+                        label="Email"
+                        type="email"
+                        fullWidth
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <TextField
+                        margin="dense"
+                        id="password"
+                        label="Password"
+                        type="password"
+                        fullWidth
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button color="primary" onClick={onCancel}>
+                        Cancel
+                    </Button>
+                    <Button color="primary" onClick={login}>
+                        Login
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
-    );
-};
+    )
+}
 
-export default AuthModal;
+export default AuthModal

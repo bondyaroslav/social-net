@@ -15,7 +15,7 @@ import {authMe} from "./api/authApi"
 const App = ({store}) => {
     const dispatch = useDispatch()
     const authStatus = useSelector( state => (state.auth.isAuth) )
-
+    console.log(authStatus)
     useEffect(() => {
         dispatch(authMe())
     }, [dispatch])
