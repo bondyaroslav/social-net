@@ -13,13 +13,14 @@ class ChatController {
     }
     async getChat(req, res) {
         const id = req.params.id
-        const chat = await db.query(`SELECT * FROM "chats" where "chatId" = $1`, [id])
-        res.json(chat.rows[0])
+        const messages = await db.query(`SELECT * FROM "messages" where "takerId" = $1`, [id])
+        res.json(messages.rows)
     }
     async deleteChat(req, res) {
         const id = req.params.id
         const chat = await db.query(`DELETE FROM "chats" WHERE "chatId" = $1`, [id])
-        res.json(chat.rows[0])
+        const messages = await db.query(`DELETE FROM "messages" WHERE "takerId" = $1`, [id])
+        res.json([chat.rows[0], messages.rows])
     }
 }
 
