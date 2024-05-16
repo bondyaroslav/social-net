@@ -9,7 +9,7 @@ const Message = ({date, text}) => {
         const minutes = String(newDate.getMinutes()).padStart(2, '0')
         return `${hours}:${minutes}`
     }
-
+    console.log(text, date)
     return (
         <Card className={style.message}>
             <Typography className={style.messageText}>{text}</Typography>

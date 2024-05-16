@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, TextField, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import { sendMessage } from "../../../store/reducers/messagesReducer";
-import style from "./Chat.module.scss";
-import Message from "./Message";
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Button, TextField, Typography } from "@mui/material"
+import { Box } from "@mui/system"
+import {sendMessage} from "../../../store/reducers/messagesReducer"
+import style from "./Chat.module.scss"
+import Message from "./Message"
+import axios from "axios"
 
 const Chat = () => {
-    const dispatch = useDispatch();
-    const currentChat = useSelector((state) => state.messagesPage.currentChat);
-    const messages = useSelector((state) => currentChat ? state.messagesPage.chats.find(chat => chat.id === currentChat.id)?.messages : []);
-    const [messageText, setMessageText] = useState("");
-
+    const dispatch = useDispatch()
+    const currentChat = useSelector((state) => state.messagesPage.currentChat)
+    const messages = useSelector((state) => currentChat ? state.messagesPage.chats.find(chat => chat.id === currentChat.id)?.messages : [])
+    const [messageText, setMessageText] = useState("")
+    console.log("current chat", currentChat)
     const onInputMessage = (text) => {
-        setMessageText(text);
+        setMessageText(text)
     }
 
     function isEmpty(str) {
@@ -23,6 +24,23 @@ const Chat = () => {
         return false
     }
 
+    const getMessagesFromChat = () => {
+        fetch(`http://localhost:5000/api/chats/${currentChat.id}/messages`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok')
+                }
+                return response.json()
+            })
+            .then(data => {
+                console.log('Chat:', data)
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error)
+            })
+    }
+    getMessagesFromChat()
+
     const onSendMessage = async () => {
         if (currentChat) {
             if (!isEmpty(messageText)) {
@@ -31,9 +49,10 @@ const Chat = () => {
                     messageSenderId: "me",
                     messageTakerId: currentChat.id,
                     messageText: messageText,
-                    messageData: new Date().toISOString()
+                    messageDate: new Date().toISOString(),
+                    chatId: currentChat.id
                 };
-                const response = await fetch("http://localhost:5000/api/messages", {
+                const response = await fetch(`http://localhost:5000/api/chats/${currentChat.id}/messages`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -49,11 +68,11 @@ const Chat = () => {
                 }
             }
         }
-    }
+    };
 
     useEffect(() => {
-        setMessageText("");
-    }, [currentChat]);
+        setMessageText("")
+    }, [currentChat])
 
     return (
         <Box className={style.ChatPage}>
@@ -66,8 +85,16 @@ const Chat = () => {
                         {messages.length > 0 ? (
                             <>
                                 {messages.map((message) => (
-                                    <Box key={message.id} style={{ display: "flex", justifyContent: message.messageSenderId === "me" ? "flex-end" : "flex-start", width: "100%" }}>
-                                        <Message date={message.date} author={message.author} text={message.text} />
+                                    <Box key={message.id}
+                                         style={{
+                                             display: "flex",
+                                             justifyContent: message.messageSenderId === "me" ? "flex-end" : "flex-start",
+                                             width: "100%"
+                                        }}>
+                                        <Message key={message.messageId}
+                                                 date={message.date}
+                                                 author={message.author}
+                                                 text={message.text} />
                                     </Box>
                                 ))}
                             </>
@@ -98,4 +125,4 @@ const Chat = () => {
     )
 }
 
-export default Chat;
+export default Chat

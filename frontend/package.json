@@ -21,6 +21,7 @@
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
+    "typescript": "^5.4.5",
     "sass": "^1.72.0",
     "socket.io-client": "^4.7.4",
     "styled": "^1.0.0",
@@ -51,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
   }
 }

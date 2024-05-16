@@ -11,7 +11,7 @@ export let rerenderEntireTree = (state) => {
     root.render(
         <Provider store={store}>
             <BrowserRouter>
-                <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
+                <App state={state} dispatch={store.dispatch.bind(store)}/>
             </BrowserRouter>
         </Provider>
     )

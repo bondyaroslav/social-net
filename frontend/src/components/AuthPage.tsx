@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material'
 import {useDispatch, useSelector} from "react-redux"
-import {setIsAuth} from "../store/reducers/authReducer"
-import style from "./AuthPage.module.scss"
 import axios from "axios"
 import {authMe} from "../api/authApi"
 
@@ -12,19 +10,12 @@ const AuthModal = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleLogin = () => {
-        console.log('Email:', email)
-        console.log('Password:', password)
-    }
-
     const login = () => {
         axios.post("https://social-network.samuraijs.com/api/1.0/auth/login", {email, password})
             .then(response => console.log(response))
             .catch(error => console.error(error))
         setTimeout(authMe, 1500)
     }
-
-    //setTimeout(authMe, 1000)
 
     const onCancel = () => {
         setEmail("")

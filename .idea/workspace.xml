@@ -4,22 +4,80 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="bugfix(Profile): upload photo">
+    <list default="true" id="7c2678ca-ca6f-4c23-a06f-bde356bf75a4" name="Changes" comment="Refactor ProfilePage component. Fetch request, error handling, and improved display conditions">
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/News/News.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/News/NewsPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/News/NewsNavbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/News/NewsNavbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/node_modules/ws/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/ws/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/node_modules/ws/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/ws/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/node_modules/ws/lib/buffer-util.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/ws/lib/buffer-util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/node_modules/ws/lib/permessage-deflate.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/ws/lib/permessage-deflate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/node_modules/ws/lib/receiver.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/ws/lib/receiver.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/node_modules/ws/lib/sender.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/ws/lib/sender.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/node_modules/ws/lib/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/ws/lib/validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/node_modules/ws/lib/websocket-server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/ws/lib/websocket-server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/node_modules/ws/lib/websocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/ws/lib/websocket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/node_modules/ws/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/node_modules/ws/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/authApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/authApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/newsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/newsApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/usersApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/usersApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AuthPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AuthPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/Chat/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/Chat/Chat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/Chat/Message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/Chat/Message.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/ChatLink/ChatLink.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/ChatLink/ChatLink.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Messages/MessagesPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Messages/MessagesPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/News/NewsItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/News/NewsItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/News/NewsNavbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/News/NewsNavbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/News/NewsPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/News/NewsPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/NotFoundPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/NotFoundPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Preloader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Preloader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile/MyPosts/MyPosts.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile/MyPosts/MyPosts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile/MyPosts/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile/MyPosts/Post.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile/ProfileInfo/ProfileInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile/ProfileInfo/ProfileInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Profile/ProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Profile/ProfilePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Settings/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Settings/Settings.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Sidebar/Sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Users/Users.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Users/Users.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Users/UsersContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Users/UsersContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/authReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/messagesReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/messagesReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/newsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/newsReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/profileReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/profileReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/usersReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/usersReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="development" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -33,22 +91,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Node.js.index.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Yaroslav/WebstormProjects/game-store&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Node.js.index.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Yaroslav/WebstormProjects/social-net",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.typescriptcompiler",
+    "ts.external.directory.path": "C:\\Users\\Yaroslav\\WebstormProjects\\social-net\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Yaroslav\WebstormProjects\social-net" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Yaroslav\WebstormProjects\social-net\backend\src" />
+      <recent name="C:\Users\Yaroslav\WebstormProjects\social-net\backend" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="index.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/backend/index.js" working-dir="$PROJECT_DIR$/backend">
       <method v="2" />
@@ -56,15 +130,11 @@
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.index.js" />
+        <item itemvalue="Node.js.index.js" />
+        <item itemvalue="Node.js.index.js" />
+        <item itemvalue="Node.js.index.js" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-WS-241.14494.235" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -97,8 +167,33 @@
       <workItem from="1712057768285" duration="2640000" />
       <workItem from="1712161820625" duration="600000" />
       <workItem from="1712343181815" duration="20000" />
-      <workItem from="1712666721157" duration="540000" />
-      <workItem from="1712749236332" duration="1604000" />
+      <workItem from="1713005410498" duration="11316000" />
+      <workItem from="1713205355005" duration="2253000" />
+      <workItem from="1713251206937" duration="1496000" />
+      <workItem from="1713796872688" duration="2572000" />
+      <workItem from="1713868311218" duration="101000" />
+      <workItem from="1713900331258" duration="1119000" />
+      <workItem from="1714055343702" duration="1122000" />
+      <workItem from="1714109711483" duration="12000" />
+      <workItem from="1714116817793" duration="2482000" />
+      <workItem from="1714143121192" duration="7908000" />
+      <workItem from="1714202692711" duration="10482000" />
+      <workItem from="1714407990699" duration="224000" />
+      <workItem from="1714898728787" duration="474000" />
+      <workItem from="1715004278889" duration="10561000" />
+      <workItem from="1715080959233" duration="5912000" />
+      <workItem from="1715163837606" duration="3296000" />
+      <workItem from="1715187845224" duration="1226000" />
+      <workItem from="1715278040667" duration="2601000" />
+      <workItem from="1715346469854" duration="48000" />
+      <workItem from="1715439060573" duration="5834000" />
+      <workItem from="1715534237795" duration="4404000" />
+      <workItem from="1715609136207" duration="8875000" />
+      <workItem from="1715715323859" duration="1176000" />
+      <workItem from="1715777282719" duration="107000" />
+      <workItem from="1715794774414" duration="3722000" />
+      <workItem from="1715869417178" duration="581000" />
+      <workItem from="1715870454112" duration="1799000" />
     </task>
     <task id="LOCAL-00001" summary="add backend">
       <option name="closed" value="true" />
@@ -196,7 +291,71 @@
       <option name="project" value="LOCAL" />
       <updated>1711977066935</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add auth slice">
+      <option name="closed" value="true" />
+      <created>1712943879803</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1712943879803</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add messages slice">
+      <option name="closed" value="true" />
+      <created>1712944440716</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1712944440716</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add users, profile, news slices">
+      <option name="closed" value="true" />
+      <created>1713207607498</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1713207607498</updated>
+    </task>
+    <task id="LOCAL-00016" summary="style NotFoundPage">
+      <option name="closed" value="true" />
+      <created>1713803563486</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1713803563486</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add crud operations in ChatController">
+      <option name="closed" value="true" />
+      <created>1715028455058</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1715028455058</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Add crud operations in messagesController">
+      <option name="closed" value="true" />
+      <created>1715085141766</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1715085141766</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Development branch initial commit">
+      <option name="closed" value="true" />
+      <created>1715536771290</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1715536771290</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Refactor ProfilePage component. Fetch request, error handling, and improved display conditions">
+      <option name="closed" value="true" />
+      <created>1715614288004</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1715614288005</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +396,18 @@
     <MESSAGE value="feat(Profile): delete and edit posts" />
     <MESSAGE value="feat(Profile): upload photo" />
     <MESSAGE value="bugfix(Profile): upload photo" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix(Profile): upload photo" />
+    <MESSAGE value="add auth slice" />
+    <MESSAGE value="add messages slice" />
+    <MESSAGE value="add users, profile, news slices" />
+    <MESSAGE value="style NotFoundPage" />
+    <MESSAGE value="Add crud operations in ChatController" />
+    <MESSAGE value="Add crud operations in messagesController" />
+    <MESSAGE value="Development branch initial commit" />
+    <MESSAGE value="Refactor ProfilePage component. Fetch request, error handling, and improved display conditions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor ProfilePage component. Fetch request, error handling, and improved display conditions" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

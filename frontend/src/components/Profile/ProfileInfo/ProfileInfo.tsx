@@ -55,12 +55,6 @@ const ProfileInfo = ({ profile, isItAuthUserAccount }) => {
 
     return (
         <Fragment>
-            <Box>
-                {profile.photos.large
-                    ? <img className={style.largeUserPhoto} src={profile.photos.large} />
-                    : <Box className={style.defaultLargeUserPhoto}></Box>
-                }
-            </Box>
             <Box className={style.profileInfoContainer}>
                 <Box className={style.userPhotoContainer}>
                     {profile.photos.small
