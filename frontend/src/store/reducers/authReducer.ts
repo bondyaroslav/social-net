@@ -1,9 +1,16 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-interface initialState = {
+interface AuthState {
     email: string,
     id: number,
-    login: null,
+    login: string,
+    isAuth: boolean
+}
+
+const initialState: AuthState = {
+    email: "",
+    id: 0,
+    login: "",
     isAuth: false
 }
 

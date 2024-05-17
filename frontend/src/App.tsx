@@ -9,12 +9,12 @@ import MessagesPage from "./components/Messages/MessagesPage"
 import UsersContainer from "./components/Users/UsersContainer"
 import NotFoundPage from "./components/NotFoundPage"
 import AuthPage from "./components/AuthPage"
-import {useDispatch, useSelector} from "react-redux"
 import {authMe} from "./api/authApi"
+import {useAppDispatch, useAppSelector} from './hooks/hooks'
 
 const App = () => {
-    const dispatch = useDispatch()
-    const authStatus = useSelector( state => (state.auth.isAuth) )
+    const dispatch = useAppDispatch()
+    const authStatus = useAppSelector(state => state.auth.isAuth)
 
     useEffect(() => {
         dispatch(authMe())

@@ -1,11 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit"
+import { configureStore } from '@reduxjs/toolkit'
 import profileReducer from "./reducers/profileReducer"
 import messagesReducer from "./reducers/messagesReducer"
 import usersReducer from "./reducers/usersReducer"
 import authReducer from "./reducers/authReducer"
 import newsReducer from "./reducers/newsReducer"
 
-const store = configureStore({
+export const store = configureStore({
     reducer: {
         profilePage: profileReducer,
         messagesPage: messagesReducer,
@@ -16,4 +16,5 @@ const store = configureStore({
     devTools: true,
 })
 
-export default store
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

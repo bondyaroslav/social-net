@@ -1,22 +1,37 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-let initialState = {
+interface User {
+    id: number
+    name: string
+    followed: boolean
+}
+
+interface UsersState {
+    users: User[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+}
+
+const initialState: UsersState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 1000,
     currentPage: 1,
     isFetching: false,
 }
-export const followUserAsync = createAsyncThunk(
+
+export const followUserAsync = createAsyncThunk<number, number>(
     'users/followUser',
-    async (userId, thunkAPI) => {
+    async (userId) => {
         return userId
     }
 )
 
-export const unfollowUserAsync = createAsyncThunk(
+export const unfollowUserAsync = createAsyncThunk<number, number>(
     'users/unfollowUser',
-    async (userId, thunkAPI) => {
+    async (userId) => {
         return userId
     }
 )
@@ -25,46 +40,44 @@ const usersSlice = createSlice({
     name: "users",
     initialState,
     reducers: {
-        followUser(state, action) {
-            const { userId } = action.payload
-            const user = state.users.find((user) => user.id === userId)
+        followUser(state, action: PayloadAction<{ userId: number }>) {
+            const user = state.users.find(user => user.id === action.payload.userId)
             if (user) {
                 user.followed = true
             }
         },
-        unfollowUser(state, action) {
-            const { userId } = action.payload
-            const user = state.users.find((user) => user.id === userId)
+        unfollowUser(state, action: PayloadAction<{ userId: number }>) {
+            const user = state.users.find(user => user.id === action.payload.userId)
             if (user) {
                 user.followed = false
             }
         },
-        setUsers(state, action) {
+        setUsers(state, action: PayloadAction<User[]>) {
             state.users = action.payload
         },
-        setCurrentPage(state, action) {
+        setCurrentPage(state, action: PayloadAction<number>) {
             state.currentPage = action.payload
         },
-        setToggleFetching(state, action) {
+        setToggleFetching(state, action: PayloadAction<boolean>) {
             state.isFetching = action.payload
         },
     },
     extraReducers: (builder) => {
         builder
             .addCase(followUserAsync.fulfilled, (state, action) => {
-                const userId = action.payload;
-                const user = state.users.find((user) => user.id === userId);
+                const userId = action.payload
+                const user = state.users.find(user => user.id === userId)
                 if (user) {
-                    user.followed = true;
+                    user.followed = true
                 }
             })
             .addCase(unfollowUserAsync.fulfilled, (state, action) => {
-                const userId = action.payload;
-                const user = state.users.find((user) => user.id === userId);
+                const userId = action.payload
+                const user = state.users.find(user => user.id === userId)
                 if (user) {
-                    user.followed = false;
+                    user.followed = false
                 }
-            });
+            })
     },
 })
 

@@ -1,31 +1,44 @@
-import {createSlice} from "@reduxjs/toolkit"
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 
-let initialState = {
+interface Message {
+    id: string
+    text: string
+    timestamp: number
+}
+
+interface Chat {
+    id: string
+    messages: Message[]
+}
+
+interface MessagesState {
+    currentChat: Chat | null
+    chats: Chat[]
+}
+
+const initialState: MessagesState = {
     currentChat: null,
     chats: [],
 }
 
 const messagesSlice = createSlice({
-    name: "messages",
+    name: 'messages',
     initialState,
     reducers: {
-        createNewChat: (state, action) => {
+        createNewChat: (state, action: PayloadAction<Chat>) => {
             const isChatExist = state.chats.some(chat => chat.id === action.payload.id)
             if (!isChatExist) {
-                state.chats = [...state.chats, action.payload]
+                state.chats.push(action.payload)
             }
         },
-        setCurrentChat: (state, action) => {
-            state.currentChat = state.chats.find(chat => chat.id === action.payload)
+        setCurrentChat: (state, action: PayloadAction<string>) => {
+            state.currentChat = state.chats.find(chat => chat.id === action.payload) || null
         },
-        sendMessage: (state, action) => {
+        sendMessage: (state, action: PayloadAction<{ chatId: string; message: Message }>) => {
             const { chatId, message } = action.payload
-            const chatIndex = state.chats.findIndex(chat => chat.id === chatId)
-            if (chatIndex !== -1) {
-                state.chats[chatIndex] = {
-                    ...state.chats[chatIndex],
-                    messages: [...state.chats[chatIndex].messages, message]
-                }
+            const chat = state.chats.find(chat => chat.id === chatId)
+            if (chat) {
+                chat.messages.push(message)
             }
         },
     },
@@ -34,7 +47,7 @@ const messagesSlice = createSlice({
 export const {
     createNewChat,
     setCurrentChat,
-    sendMessage ,
+    sendMessage
 } = messagesSlice.actions
 
 export default messagesSlice.reducer
