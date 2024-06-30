@@ -1,5 +1,5 @@
 import './App.css'
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import {Route, Routes} from "react-router-dom"
 import Sidebar from "./components/Sidebar/Sidebar"
 import ProfilePage from "./components/Profile/ProfilePage"
@@ -8,21 +8,26 @@ import Settings from "./components/Settings/Settings"
 import MessagesPage from "./components/Messages/MessagesPage"
 import UsersContainer from "./components/Users/UsersContainer"
 import NotFoundPage from "./components/NotFoundPage"
-import AuthPage from "./components/AuthPage"
-import {authMe} from "./api/authApi"
-import {useAppDispatch, useAppSelector} from './hooks/hooks'
+import AuthModal from "./components/Auth/AuthModal"
+import {useGetIsUserAuthQuery} from "./api/authService"
 
 const App = () => {
-    const dispatch = useAppDispatch()
-    const authStatus = useAppSelector(state => state.auth.isAuth)
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+    const { data, error, isLoading } = useGetIsUserAuthQuery({})
 
     useEffect(() => {
-        dispatch(authMe())
-    }, [dispatch])
+        if (!isLoading) {
+            if (!data || data.resultCode !== 0) {
+                setIsAuthModalOpen(true)
+            }
+        }
+    }, [data, error, isLoading])
 
     return (
         <div className="App">
-            {authStatus ? (
+            {isAuthModalOpen ? (
+                <AuthModal open={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+            ) : (
                 <>
                     <Sidebar/>
                     <Routes>
@@ -36,8 +41,6 @@ const App = () => {
                         <Route path="*" element={<NotFoundPage/>}/>
                     </Routes>
                 </>
-            ) : (
-                <AuthPage/>
             )}
         </div>
     )

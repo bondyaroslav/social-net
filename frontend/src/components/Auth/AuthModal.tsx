@@ -1,30 +1,40 @@
 import React, {useState} from 'react'
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material'
-import {useDispatch, useSelector} from "react-redux"
-import axios from "axios"
-import {authMe} from "../api/authApi"
+import { Button, Modal, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material'
+import {useGetIsUserAuthQuery, useSetAuthUserMutation} from "../../api/authService"
+import style from './AuthModal.module.scss'
 
-const AuthModal = () => {
-    const dispatch = useDispatch()
-    const [open, setOpen] = useState(!useSelector(state => state.auth.isAuth))
+interface AuthModalProps {
+    open: boolean,
+    onClose: () => void
+}
+
+const AuthModal: React.FC<AuthModalProps> = ({open, onClose}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const login = () => {
-        axios.post("https://social-network.samuraijs.com/api/1.0/auth/login", {email, password})
-            .then(response => console.log(response))
-            .catch(error => console.error(error))
-        setTimeout(authMe, 1500)
+    const {data} = useGetIsUserAuthQuery({})
+    const [authUser] = useSetAuthUserMutation()
+
+    console.log(data)
+
+    const login = async () => {
+        try {
+            await authUser({ email, password }).unwrap()
+            onClose()
+        } catch (err) {
+            console.error('Failed to login:', err)
+        }
     }
 
     const onCancel = () => {
-        setEmail("")
-        setPassword("")
+        setEmail('')
+        setPassword('')
+        onClose()
     }
 
     return (
-        <div>
-            <Dialog open={open}>
+        <Modal open={open} onClose={onClose}>
+            <div className={style.AuthModal}>
                 <DialogTitle>Authorization</DialogTitle>
                 <DialogContent>
                     <TextField
@@ -55,8 +65,8 @@ const AuthModal = () => {
                         Login
                     </Button>
                 </DialogActions>
-            </Dialog>
-        </div>
+            </div>
+        </Modal>
     )
 }
 
